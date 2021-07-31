@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1033374057015",
+    "project_id": "doctor-schedule-32488",
+    "storage_bucket": "doctor-schedule-32488.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1033374057015:android:e8d5e3e5df59999db9b5b2",
+        "android_client_info": {
+          "package_name": "com.example.doctorschedule"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1033374057015-42b3uu7v24spvecemlp30pu2g59s94t5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDY4hxtRdMG5KEhhHhKdIrDWuFsuS1Boe8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1033374057015-42b3uu7v24spvecemlp30pu2g59s94t5.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

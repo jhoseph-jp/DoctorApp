@@ -1,0 +1,114 @@
+<resources>
+    <string name="app_name">Doctor Schedule</string>
+    <string name="entrar">Entrar</string>
+    <string name="cadastrar">Cadastrar</string>
+    <string name="e_mailLogin">E-mail</string>
+    <string name="email_sign_up">E-mail</string>
+    <string name="senhaLogin">Senha</string>
+    <string name="password_sign_up">Senha</string>
+    <string name="redo_password_sign_up">Confirme a senha</string>
+    <string name="name">Name</string>
+    <string name="fone">Fone</string>
+    <string name="cpf">CPF</string>
+    <string name="email">E-mail</string>
+    <string name="cep">CEP</string>
+    <string name="endereco">Endereço</string>
+    <string name="numero">Número</string>
+    <string name="estado">Estado</string>
+    <string name="proximo">Proximo</string>
+    <string name="idade">Idade</string>
+    <string name="powered_by">Powered by Jhoseph Pereira</string>
+    <string name="signup_login">Cadastre se</string>
+    <string name="signup">Cadastre se</string>
+    <string name="signup2">Cadastre se</string>
+    <string name="signup3">Cadastre se</string>
+    <string name="signup4">Cadastre se</string>
+    <string name="full_name">Nome completo</string>
+    <string name="next_sign_btn">Proximo</string>
+    <string name="next_sign_btn2">Proximo</string>
+    <string name="next_sign_btn3">Proximo</string>
+    <string name="next_sign_btn4">Concluir cadastro</string>
+    <string name="sign_back">TODO</string>
+    <string name="sign_back2">TODO</string>
+    <string name="sign_back3">TODO</string>
+    <string name="sign_back4">TODO</string>
+    <string name="choose_type">Escolha seu genero</string>
+    <string name="man_choise">Homem</string>
+    <string name="woman_choise">Mulher</string>
+    <string name="other_choise">Outro</string>
+    <string name="birthday_date">Data de nascimento</string>
+    <string name="city">Cidade</string>
+    <string name="get_in">Entrar</string>
+    <string name="login">Login</string>
+    <string name="forgot_password">Esqueci a senha</string>
+    <string name="remember_me">Lembre me</string>
+    <string name="login_back">TODO</string>
+    <string name="welcome">Bem vindo</string>
+    <string name="login_onboard">Login</string>
+    <string name="sign_onboard">Cadastre se</string>
+    <string name="home">Home</string>
+    <string name="profile">Perfil</string>
+    <string name="add_card">Cadastrar convenio</string>
+    <string name="tab_prices">Tabela de preços</string>
+    <string name="logout">Sair</string>
+    <string name="doctor_schedule">Doctor Schedule</string>
+    <string name="card">Carteirinha</string>
+    <string name="areas_prof">Areas profissionais</string>
+    <string name="exams">Meus exames</string>
+    <string name="schedule">Agendar consultas</string>
+    <string name="clinics">Clinicas</string>
+    <string name="my_appointment">Minhas consultas</string>
+    <string name="my_cards">Minhas carteirinhas</string>
+    <string name="card_plan">Cartão plano saúde</string>
+    <string name="scheduling">Agendar consulta</string>
+    <string name="day_choose">A partir de:</string>
+    <string name="time_consult">Horario:</string>
+    <string name="medical_type">Especialidade</string>
+    <string name="rg">RG</string>
+    <string name="Clininc_name">Clinica:</string>
+    <string name="clinic_address">Endereço:</string>
+    <string name="clinic_phone">Telefone:</string>
+    <string name="clinic_email">Email:</string>
+    <string name="medic">Medico:</string>
+    <string name="agend">Agendar</string>
+    <string name="nameUser">Nome:</string>
+    <string name="rg_user">RG:</string>
+    <string name="cpf_user">CPF:</string>
+    <string name="idade_user">Idade:</string>
+    <string name="date_consult">Data:</string>
+    <string name="especiaLidade">Especialidade:</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="proximas">Próximas</string>
+
+    <string-array name="horario">
+        <item>01</item>
+        <item>02</item>
+        <item>03</item>
+        <item>04</item>
+        <item>05</item>
+        <item>06</item>
+        <item>07</item>
+        <item>08</item>
+        <item>09</item>
+        <item>10</item>
+        <item>11</item>
+        <item>12</item>
+    </string-array>
+
+    <string-array name="minutos">
+        <item>00</item>
+        <item>20</item>
+        <item>40</item>
+    </string-array>
+
+    <string-array name="periodo">
+        <item>AM</item>
+        <item>PM</item>
+        <item>AM</item>
+        <item>PM</item>
+    </string-array>
+
+</resources>
+

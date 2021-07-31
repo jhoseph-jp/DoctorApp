@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.doctorschedule">
+
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.DoctorSchedule">
+        <activity android:name=".ProfessionalAreas"></activity>
+        <activity android:name=".MyExams" />
+        <activity android:name=".Clinics" />
+        <activity android:name=".MyScheduling" />
+        <activity android:name=".Scheduling" />
+        <activity android:name=".MyCard" />
+        <activity android:name=".User.MainPageUser" />
+        <activity android:name=".Common.TestSignUp" />
+        <activity android:name=".OnBoarding" />
+        <activity android:name=".SignUp4th" />
+        <activity android:name=".SignUp3rd" />
+        <activity android:name=".SignUp2nd" />
+        <activity android:name=".SignUp" />
+        <activity android:name=".Login" />
+        <activity android:name=".MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
+
+</manifest>
