@@ -3,12 +3,15 @@ package com.example.doctorschedule;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Adapter;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -16,6 +19,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+//import com.example.doctorschedule.AdaptersView.AdapterClinic;
 import com.example.doctorschedule.PagesConstructor.ClinicaObject;
 import com.example.doctorschedule.User.MainPageUser;
 import com.example.doctorschedule.WebServices.ConnectionAPI;
@@ -38,7 +42,7 @@ public class Clinics extends AppCompatActivity {
 
     ImageView clinicsback;
     TextView clinic, clinicAddress, clinicPhone, ClinicEmail;
-    ArrayAdapter<String> listAdapter;
+    RecyclerView recyclerView;
 
 
     private List<ClinicaObject> clinicaObjectList = new ArrayList<>();
@@ -61,6 +65,7 @@ public class Clinics extends AppCompatActivity {
         ClinicEmail = findViewById(R.id.clinic_email);
         buscarcep = findViewById(R.id.buscar);
         cardItem = findViewById(R.id.card_view_clinics);
+
 
         clinicsback.setOnClickListener(new View.OnClickListener() {
             @Override
