@@ -1,5 +1,5 @@
-//package com.example.doctorschedule.AdaptersView;
-/*
+package com.example.doctorschedule.AdaptersView;
+
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,39 +10,41 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.doctorschedule.Clinics;
 import com.example.doctorschedule.PagesConstructor.ClinicaObject;
 import com.example.doctorschedule.R;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class AdapterClinic extends RecyclerView.Adapter<AdapterClinic.ViewHolder>{
 
-    LayoutInflater inflater;
-    List<ClinicaObject> clinicaObject;
+       private List<ClinicaObject> clinicaObjectlist;
 
-    public AdapterClinic(Context ctx, List<ClinicaObject> clinicaObject){
-        this.inflater = LayoutInflater.from(ctx);
-        this.clinicaObject = clinicaObject;
+    public AdapterClinic(List<ClinicaObject> clinicaObjectList) {
+        this.clinicaObjectlist = clinicaObjectList;
     }
+
 
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = inflater.inflate(R.layout.custum_list_clinic,parent,false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.custum_list_clinic,parent,false);
         return new ViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        holder.clinicaNome.setText(clinicaObject.get(position).getNome_clinica());
-        holder.clinicaEnd.setText(clinicaObject.get(position).getEndereco());
-        holder.clinicaTel.setText(clinicaObject.get(position).getTelefone());
-        holder.clinicaEmail.setText(clinicaObject.get(position).getEmail());
+        ClinicaObject clinicaObject = clinicaObjectlist.get(position);
+        holder.clinicaNome.setText(clinicaObject.getNome_clinica());
+        holder.clinicaEnd.setText(clinicaObject.getEndereco());
+        holder.clinicaTel.setText(clinicaObject.getTelefone());
+        holder.clinicaEmail.setText(clinicaObject.getEmail());
     }
 
     @Override
     public int getItemCount() {
-        return 2;
+        return clinicaObjectlist.size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder{
@@ -60,4 +62,3 @@ public class AdapterClinic extends RecyclerView.Adapter<AdapterClinic.ViewHolder
     }
 
 }
-*/

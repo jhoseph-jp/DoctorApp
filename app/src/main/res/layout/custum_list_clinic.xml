@@ -3,9 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:padding="15dp"
-    tools:context=".Clinics">
+    android:layout_height="wrap_content"
+    android:padding="15dp">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -13,82 +12,48 @@
         android:layout_margin="10dp"
         android:orientation="vertical">
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="10dp">
-
-            <ImageView
-                android:id="@+id/clinics_back"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:padding="5dp"
-                android:src="@drawable/ic_backto">
-            </ImageView>
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:layout_marginTop="20dp"
-                android:padding="5dp"
-                android:src="@drawable/ic_search">
-            </ImageView>
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/clinics_back"
-                android:text="@string/clinics"
-                android:textAlignment="center"
-                android:textSize="20sp"
-                android:textStyle="bold">
-
-            </TextView>
-
-        </RelativeLayout>
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
             <com.google.android.material.card.MaterialCardView
-                android:id="@+id/card_view_clinics"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="10dp"
+                android:layout_margin="5dp"
                 app:cardElevation="8dp">
 
                 <LinearLayout
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_margin="10dp"
                     android:orientation="vertical">
 
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_margin="5dp">
+                        android:layout_margin="5dp"
+                        android:orientation="horizontal">
 
-                        <TextView
+                        <LinearLayout
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="@string/Clininc_name">
+                            android:layout_height="wrap_content">
 
-                        </TextView>
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Clinica"></TextView>
+
+                        </LinearLayout>
 
                         <LinearLayout
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginStart="10dp">
+                            android:layout_marginLeft="10dp">
 
                             <TextView
                                 android:id="@+id/clinic_name"
                                 android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="">
+                                android:layout_height="wrap_content">
 
                             </TextView>
                         </LinearLayout>
@@ -97,25 +62,29 @@
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_margin="5dp">
+                        android:layout_margin="5dp"
+                        android:orientation="horizontal">
 
-                        <TextView
+                        <LinearLayout
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="@string/clinic_address">
+                            android:layout_height="wrap_content">
 
-                        </TextView>
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="endereço"></TextView>
+
+                        </LinearLayout>
 
                         <LinearLayout
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginStart="10dp">
+                            android:layout_marginLeft="10dp">
 
                             <TextView
                                 android:id="@+id/clinic_address"
                                 android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="">
+                                android:layout_height="wrap_content">
 
                             </TextView>
                         </LinearLayout>
@@ -124,87 +93,65 @@
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_margin="5dp">
+                        android:layout_margin="5dp"
+                        android:orientation="horizontal">
 
-                        <TextView
+                        <LinearLayout
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="@string/clinic_phone">
+                            android:layout_height="wrap_content">
 
-                        </TextView>
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="telefone"></TextView>
+
+                        </LinearLayout>
 
                         <LinearLayout
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginStart="10dp">
+                            android:layout_marginLeft="10dp">
 
                             <TextView
                                 android:id="@+id/clinic_phone"
                                 android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="">
-
-                            </TextView>
+                                android:layout_height="wrap_content"></TextView>
                         </LinearLayout>
                     </LinearLayout>
 
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_margin="5dp">
+                        android:layout_margin="5dp"
+                        android:orientation="horizontal">
 
-                        <TextView
+                        <LinearLayout
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="@string/clinic_email">
+                            android:layout_height="wrap_content">
 
-                        </TextView>
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="email"></TextView>
+
+                        </LinearLayout>
 
                         <LinearLayout
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginStart="10dp">
+                            android:layout_marginLeft="10dp">
 
                             <TextView
                                 android:id="@+id/clinic_email"
                                 android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="">
+                                android:layout_height="wrap_content">
 
                             </TextView>
                         </LinearLayout>
                     </LinearLayout>
 
                 </LinearLayout>
-
             </com.google.android.material.card.MaterialCardView>
-
-
         </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="10dp">
-
-                <Button
-                    android:id="@+id/buscar"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:onClick="buca"
-                    tools:ignore="SpeakableTextPresentCheck">
-
-                </Button>
-
-            </LinearLayout>
-        </LinearLayout>
-
     </LinearLayout>
-
-
 </ScrollView>
