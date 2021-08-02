@@ -9,22 +9,15 @@ public class ClinicaObject {
     private String created_at;
     private String updated_at;
 
-    public ClinicaObject(String nome_clinica, String endereco, String telefone, String email){
-        this.nome_clinica = nome_clinica;
-        this.endereco = endereco;
-        this.telefone = telefone;
-        this.email = email;
-    }
-
     public ClinicaObject() {
 
     }
 
-    public String getId() {
+   public String getId() {
         return id;
     }
 
-    public void setId(String id) {
+   public void setId(String id) {
         this.id = id;
     }
 

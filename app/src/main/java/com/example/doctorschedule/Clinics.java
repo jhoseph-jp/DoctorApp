@@ -7,14 +7,22 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonArrayRequest;
+import com.android.volley.toolbox.Volley;
 import com.example.doctorschedule.AdaptersView.AdapterClinic;
 import com.example.doctorschedule.PagesConstructor.ClinicaObject;
 import com.example.doctorschedule.User.MainPageUser;
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -29,12 +37,11 @@ import java.util.List;
 public class Clinics extends AppCompatActivity {
 
     ImageView clinicsback;
-    TextView clinic, clinicAddress, clinicPhone, ClinicEmail;
     RecyclerView recyclerView;
-    private String JSON_URL = "https://doctor-schedule-api.herokuapp.com/clinicas";
+    private String url = "https://doctor-schedule-api.herokuapp.com/clinicas";
+    AdapterClinic adapter;
 
-
-    List<ClinicaObject> clinicaObjectList = new ArrayList<>();
+    ArrayList<ClinicaObject> linicList;
 
 
     ProgressDialog progressDialog;
@@ -45,22 +52,13 @@ public class Clinics extends AppCompatActivity {
         setContentView(R.layout.activity_clinics);
 
         clinicsback = findViewById(R.id.clinics_back);
-        clinic = findViewById(R.id.clinic_name);
-        clinicAddress = findViewById(R.id.clinic_address);
-        clinicPhone = findViewById(R.id.clinic_phone);
-        ClinicEmail = findViewById(R.id.clinic_email);
-        recyclerView = findViewById(R.id.recycle);
+        recyclerView = findViewById(R.id.RecyclerView);
 
-        //Tarefa tarefa = new Tarefa();
-        //tarefa.execute();
-
-
-        //Lastagem clinicas
-         this.criar_clinicas();
-
-        AdapterClinic adapter = new AdapterClinic(this, clinicaObjectList);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        adapter = new AdapterClinic();
         recyclerView.setAdapter(adapter);
+        linicList = new ArrayList<>();
+        getData();
 
         clinicsback.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -72,97 +70,42 @@ public class Clinics extends AppCompatActivity {
 
     }
 
-    public void criar_clinicas(){
-        ClinicaObject clinicaObject = new ClinicaObject("clinica teste1", "iji 41","441255","clinica@gmail.com");
-        clinicaObjectList.add(clinicaObject);
+    private void getData() {
+        ProgressDialog progressDialog = new ProgressDialog(this);
+        progressDialog.setMessage("Carregando..");
+        progressDialog.show();
+        JsonArrayRequest jsonArrayRequest =new JsonArrayRequest(url, new Response.Listener<JSONArray>() {
+            @Override
+            public void onResponse(JSONArray response) {
+                try {
+                    for (int i = 0; i < response.length(); i++) {
+                        JSONObject jsonObject = response.getJSONObject(i);
+                        ClinicaObject clinicaObject = new ClinicaObject();
+                        clinicaObject.setNome_clinica(jsonObject.getString("nome_clinica"));
+                        clinicaObject.setEndereco(jsonObject.getString("endereco"));
+                        clinicaObject.setTelefone(jsonObject.getString("telefone"));
+                        clinicaObject.setEmail(jsonObject.getString("email"));
+                        linicList.add(clinicaObject);
+                    }
+                }
+                catch (JSONException e){
+                    Toast.makeText(Clinics.this,"Um erro ocorreu no Json",Toast.LENGTH_SHORT).show();
+                }
+                adapter.setData(linicList);
+                adapter.notifyDataSetChanged();
+                progressDialog.dismiss();
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                progressDialog.dismiss();
+                Toast.makeText(Clinics.this,"Um erro ocorreu",Toast.LENGTH_SHORT).show();
+            }
+        });
 
-        clinicaObject = new ClinicaObject("clinica teste2", "iji 42","441255","clinica@gmail.com");
-        clinicaObjectList.add(clinicaObject);
-
-        clinicaObject = new ClinicaObject("clinica teste3", "iji 43","441255","clinica@gmail.com");
-        clinicaObjectList.add(clinicaObject);
-
-        clinicaObject = new ClinicaObject("clinica teste4", "iji 44","441255","clinica@gmail.com");
-        clinicaObjectList.add(clinicaObject);
-
-        clinicaObject = new ClinicaObject("clinica teste5", "iji 45","441255","clinica@gmail.com");
-        clinicaObjectList.add(clinicaObject);
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        requestQueue.add(jsonArrayRequest);
     }
 
-    private class Tarefa extends AsyncTask<String, String, String> {
-
-        @Override
-        protected String doInBackground(String... strings) {
-            try {
-                URL url = new URL(JSON_URL);
-                HttpURLConnection con = (HttpURLConnection) url.openConnection();
-                con.setRequestMethod("GET");
-                InputStream is = con.getInputStream();
-                BufferedReader br = new BufferedReader(new InputStreamReader(is));
-                String line;
-                StringBuffer out = new StringBuffer();
-                while ((line = br.readLine()) != null) {
-                    out.append(line + "\n");
-                }
-                is.close();
-                return
-                        out.toString();
-            } catch (MalformedURLException e) {
-                e.printStackTrace();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            return null;
-        }
-
-        @Override
-        protected void onPreExecute() {
-            super.onPreExecute();
-            progressDialog = new ProgressDialog(Clinics.this);
-            progressDialog.setMessage("Aguarde...carregando dados");
-            progressDialog.setIndeterminate(true);
-            progressDialog.show();
-        }
-
-        @Override
-        protected void onPostExecute(String s) {
-            //Este método é acionado após doInBackground acessar o serviço web e baixar os dados da consulta
-            try {
-                List<ClinicaObject> clinicaObjectList = new ArrayList<>();
-                JSONArray jsonArray = null;
-                JSONObject jsonObject = null;
-
-                jsonArray = new JSONArray(s);
-
-                for (int i = 0; i < jsonArray.length(); i++) {
-                    jsonObject = jsonArray.getJSONObject(i);
-
-                    ClinicaObject model = new ClinicaObject();
-
-                    model.setNome_clinica(jsonObject.getString("nome_clinica"));
-                    model.setEndereco(jsonObject.getString("endereco"));
-                    model.setTelefone(jsonObject.getString("telefone"));
-                    model.setEmail(jsonObject.getString("email"));
-
-
-                    clinicaObjectList.add(model);
-                }
-                progressDialog.hide();
-            } catch (Exception e) {
-                Toast.makeText(Clinics.this, "Falha na consulta", Toast.LENGTH_SHORT).show();
-                progressDialog.hide();
-            }
-            //PutDataIntoRecycleView(clinicaObjectList);
-        }
-
-    }
-
-   /* private void PutDataIntoRecycleView(List<ClinicaObject>clinicaObjectList) {
-        //configurar o recyclerView
-        AdapterClinic adapter = new AdapterClinic(this, clinicaObjectList);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        recyclerView.setAdapter(adapter);
-
-    }*/
 }
 
