@@ -1,33 +1,21 @@
 package com.example.doctorschedule;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.cardview.widget.CardView;
-import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Adapter;
-import android.widget.ArrayAdapter;
-import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import com.example.doctorschedule.AdaptersView.AdapterClinic;
 import com.example.doctorschedule.AdaptersView.AdapterClinic;
 import com.example.doctorschedule.PagesConstructor.ClinicaObject;
 import com.example.doctorschedule.User.MainPageUser;
-
 import org.json.JSONArray;
-import org.json.JSONException;
 import org.json.JSONObject;
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -44,14 +32,10 @@ public class Clinics extends AppCompatActivity {
     TextView clinic, clinicAddress, clinicPhone, ClinicEmail;
     RecyclerView recyclerView;
     private String JSON_URL = "https://doctor-schedule-api.herokuapp.com/clinicas";
-  //  AdapterClinic adapterClinic;
 
 
     List<ClinicaObject> clinicaObjectList = new ArrayList<>();
 
-    CardView cardItem;
-
-    // Button buscarcep;
 
     ProgressDialog progressDialog;
 
@@ -65,31 +49,18 @@ public class Clinics extends AppCompatActivity {
         clinicAddress = findViewById(R.id.clinic_address);
         clinicPhone = findViewById(R.id.clinic_phone);
         ClinicEmail = findViewById(R.id.clinic_email);
-        // buscarcep = findViewById(R.id.buscar);
-        //  cardItem = findViewById(R.id.card_view_clinics);
         recyclerView = findViewById(R.id.recycle);
 
-
-     //   clinicaObjectList = new ArrayList<>();
-
-
-     //   Tarefa tarefa = new Tarefa();
-     //   tarefa.execute();
+        //Tarefa tarefa = new Tarefa();
+        //tarefa.execute();
 
 
         //Lastagem clinicas
-          this.criar_clinicas();
+         this.criar_clinicas();
 
-        AdapterClinic adapter = new AdapterClinic(clinicaObjectList);
-
-
-        //configurar o recyclerView
-        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
-        recyclerView.setLayoutManager(layoutManager);
-        recyclerView.setHasFixedSize(true);
+        AdapterClinic adapter = new AdapterClinic(this, clinicaObjectList);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(adapter);
-
-       // adapter.notifyDataSetChanged();
 
         clinicsback.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -166,53 +137,32 @@ public class Clinics extends AppCompatActivity {
                 for (int i = 0; i < jsonArray.length(); i++) {
                     jsonObject = jsonArray.getJSONObject(i);
 
-                    ClinicaObject clinicaObject = new ClinicaObject();
+                    ClinicaObject model = new ClinicaObject();
 
-                    clinicaObject.setId(jsonObject.getString("id"));
-                    clinicaObject.setNome_clinica(jsonObject.getString("nome_clinica"));
-                    clinicaObject.setEndereco(jsonObject.getString("endereco"));
-                    clinicaObject.setTelefone(jsonObject.getString("telefone"));
-                    clinicaObject.setEmail(jsonObject.getString("email"));
+                    model.setNome_clinica(jsonObject.getString("nome_clinica"));
+                    model.setEndereco(jsonObject.getString("endereco"));
+                    model.setTelefone(jsonObject.getString("telefone"));
+                    model.setEmail(jsonObject.getString("email"));
 
-                    clinicaObjectList.add(clinicaObject);
+
+                    clinicaObjectList.add(model);
                 }
                 progressDialog.hide();
             } catch (Exception e) {
                 Toast.makeText(Clinics.this, "Falha na consulta", Toast.LENGTH_SHORT).show();
                 progressDialog.hide();
             }
-           // PutDataIntoRecycleView(clinicaObjectList);
-        }
-
-        private void showdata() {
-            if (clinicaObjectList != null){
-                for (ClinicaObject clinicaObject: clinicaObjectList){
-                    clinic.append(clinicaObject.getNome_clinica()+"\n");
-                    clinicAddress.append(clinicaObject.getEndereco()+"\n");
-                    clinicPhone.append(clinicaObject.getTelefone()+"\n");
-                    ClinicEmail.append(clinicaObject.getEmail()+"\n");
-                }
-            }
-
+            //PutDataIntoRecycleView(clinicaObjectList);
         }
 
     }
 
-   /* private void PutDataIntoRecycleView(List<ClinicaObject> clinicaObjectList) {
-
-        AdapterClinic adapter = new AdapterClinic();
+   /* private void PutDataIntoRecycleView(List<ClinicaObject>clinicaObjectList) {
         //configurar o recyclerView
-        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
-        recyclerView.setLayoutManager(layoutManager);
-        recyclerView.setHasFixedSize(true);
+        AdapterClinic adapter = new AdapterClinic(this, clinicaObjectList);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(adapter);
 
     }*/
 }
-
-  /*  public void buca(View view) {
-        Tarefa tarefa = new Tarefa();
-        tarefa.execute("https://doctor-schedule-api.herokuapp.com/clinicas");
-    }*/
-
 

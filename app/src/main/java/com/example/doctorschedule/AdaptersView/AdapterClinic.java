@@ -18,33 +18,35 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class AdapterClinic extends RecyclerView.Adapter<AdapterClinic.ViewHolder>{
+        private Context context;
+       private List<ClinicaObject> mydata;
 
-       private List<ClinicaObject> clinicaObjectlist;
-
-    public AdapterClinic(List<ClinicaObject> clinicaObjectList) {
-        this.clinicaObjectlist = clinicaObjectList;
+    public AdapterClinic(Context context, List<ClinicaObject> clinicaObjectList) {
+        this.context = context;
+        this.mydata = clinicaObjectList;
     }
-
 
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.custum_list_clinic,parent,false);
-        return new ViewHolder(view);
+        View v;
+        LayoutInflater inflater= LayoutInflater.from(context);
+        v = inflater.inflate(R.layout.custum_list_clinic,parent,false);
+        return new ViewHolder(v);
     }
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        ClinicaObject clinicaObject = clinicaObjectlist.get(position);
-        holder.clinicaNome.setText(clinicaObject.getNome_clinica());
-        holder.clinicaEnd.setText(clinicaObject.getEndereco());
-        holder.clinicaTel.setText(clinicaObject.getTelefone());
-        holder.clinicaEmail.setText(clinicaObject.getEmail());
+        //ClinicaObject clinicaObject = mydata.get(position);
+        holder.clinicaNome.setText(mydata.get(position).getNome_clinica());
+        holder.clinicaEnd.setText(mydata.get(position).getEndereco());
+        holder.clinicaTel.setText(mydata.get(position).getTelefone());
+        holder.clinicaEmail.setText(mydata.get(position).getEmail());
     }
 
     @Override
     public int getItemCount() {
-        return clinicaObjectlist.size();
+        return mydata.size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder{
