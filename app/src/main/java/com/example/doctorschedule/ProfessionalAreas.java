@@ -78,10 +78,10 @@ public class ProfessionalAreas extends AppCompatActivity {
                         JSONObject jsonObject = response.getJSONObject(i);
                         EspecialidadeModel especialidadeModel = new EspecialidadeModel();
                         especialidadeModel.setNome_especialidade(jsonObject.getString("nome_especialidade"));
-                        especialidadeModel.setNomeEClininca(jsonObject.getString("nome_clinica"));
-                        especialidadeModel.setEspEnd(jsonObject.getString("endereco"));
-                        especialidadeModel.setEspETelefone(jsonObject.getString("telefone"));
-                        especialidadeModel.setEspEmail(jsonObject.getString("email"));
+                        especialidadeModel.setNomeEClininca(jsonObject.getJSONObject("clinica").getString("nome_clinica"));
+                        especialidadeModel.setEspEnd(jsonObject.getJSONObject("clinica").getString("endereco"));
+                        especialidadeModel.setEspETelefone(jsonObject.getJSONObject("clinica").getString("telefone"));
+                        especialidadeModel.setEspEmail(jsonObject.getJSONObject("clinica").getString("email"));
                         especiaList.add(especialidadeModel);
                     }
                 }

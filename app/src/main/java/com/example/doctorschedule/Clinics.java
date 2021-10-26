@@ -52,7 +52,7 @@ public class Clinics extends AppCompatActivity {
         setContentView(R.layout.activity_clinics);
 
         clinicsback = findViewById(R.id.clinics_back);
-        recyclerView = findViewById(R.id.RecyclerView);
+        recyclerView = findViewById(R.id.RecyclerViewClinics);
 
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         adapter = new AdapterClinic();

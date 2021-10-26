@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.util.Pair;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.example.doctorschedule.Common.TestSignUp;
 
@@ -26,7 +27,6 @@ public class OnBoarding extends AppCompatActivity {
 
     public void callLogin (View view){
         Intent callLogin = new Intent(getApplicationContext(), Login.class);
-
         Pair[] pairs = new Pair[1];
         pairs[0] = new Pair<View,String>(LoginOnBBtn,"transition_login");
 
