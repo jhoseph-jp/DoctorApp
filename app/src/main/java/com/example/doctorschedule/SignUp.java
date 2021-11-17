@@ -13,6 +13,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.doctorschedule.Common.TestSignUp;
+import com.example.doctorschedule.PagesConstructor.Users;
+import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 
 public class SignUp extends AppCompatActivity {
@@ -20,7 +22,7 @@ public class SignUp extends AppCompatActivity {
     ImageView backToOnBoardingSignUp;
     TextView accountView;
     Button SignUpFstBtn;
-    TextInputLayout fullName, cpf, rg, emailPerson, pass, confrimPass;
+    TextInputEditText fullName, cpf, rg, emailPerson, pass, confrimPass;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,14 +40,10 @@ public class SignUp extends AppCompatActivity {
         confrimPass = findViewById(R.id.txtConfirmPasswordSignUp);
         accountView = findViewById(R.id.createAccount);
 
-        backToOnBoardingSignUp.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent backToOnB = new Intent(getApplicationContext(), OnBoarding.class);
-                startActivity(backToOnB);
-            }
-        });
+    }
 
+    public void BackOnBorarding( View v){
+        this.finish();
     }
 
     public void callNextSignUpPage(View view){
@@ -54,6 +52,13 @@ public class SignUp extends AppCompatActivity {
         }*/
 
         Intent callStep2 = new Intent(getApplicationContext(),SignUp2nd.class);
+        callStep2.putExtra("fullName", fullName.getText().toString());
+        callStep2.putExtra("cpf",cpf.getText().toString());
+        callStep2.putExtra("rg",rg.getText().toString());
+        callStep2.putExtra("emailPerson",emailPerson.getText().toString());
+        callStep2.putExtra("pass",pass.getText().toString());
+        callStep2.putExtra("confrimPass",confrimPass.getText().toString());
+
         Pair [] pairs = new Pair[3];
 
         pairs[0] = new Pair<View,String>(backToOnBoardingSignUp,"transitionBackPage");
@@ -65,46 +70,43 @@ public class SignUp extends AppCompatActivity {
     }
     //Validation function
     private boolean validateFullName(){
-        String val = fullName.getEditText().getText().toString().trim();
+        String val = fullName.getText().toString().trim();
         if (val.isEmpty()){
             fullName.setError("O campo não pode estar vazio");
             return false;
         }
         else{
             fullName.setError(null);
-            fullName.setErrorEnabled(false);
             return true;
         }
 
         }
     private boolean validatecpf(){
-        String val = cpf.getEditText().getText().toString().trim();
+        String val = cpf.getText().toString().trim();
         if (val.isEmpty()){
             cpf.setError("O campo não pode estar vazio");
             return false;
         }
         else{
             cpf.setError(null);
-            cpf.setErrorEnabled(false);
             return true;
         }
 
     }
     private boolean validatecrg(){
-        String val = rg.getEditText().getText().toString().trim();
+        String val = rg.getText().toString().trim();
         if (val.isEmpty()){
             rg.setError("O campo não pode estar vazio");
             return false;
         }
         else{
             rg.setError(null);
-            rg.setErrorEnabled(false);
             return true;
         }
 
     }
     private boolean validateEmail(){
-        String val = emailPerson.getEditText().getText().toString().trim();
+        String val = emailPerson.getText().toString().trim();
         String checkEmail = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
         if (val.isEmpty()){
             emailPerson.setError("O campo não pode estar vazio");
@@ -116,35 +118,32 @@ public class SignUp extends AppCompatActivity {
         }
         else{
             emailPerson.setError(null);
-            emailPerson.setErrorEnabled(false);
             return true;
         }
 
     }
     private boolean validatePassword(){
-        String val = pass.getEditText().getText().toString().trim();
-        String checkPassword = "^" //+
-                //"(?=.*[0-9])" +
-        // "(?=.*[a-z]" +
-        // "(?=.*[A-Z]" +
-            //    "(?=.*[a-zA-Z]" +
-              //  "(?=.*[@#$%^&+=]" +
-            //    "(?=\\S+$)" +
-            //    ".{4,}" +
-             //   "$";
-        ;
+        String val = pass.getText().toString().trim();
+        String checkPassword = ("^" +
+               // "(?=.*[0-9])" +
+         //"(?=.*[a-z])" +
+         //"(?=.*[A-Z])" +
+               "(?=.*[a-zA-Z])" +
+              //  "(?=.*[@#$%^&+=])" +
+                "(?=\\S+$)" +
+               ".{4,}" +
+                "$");
 
         if (val.isEmpty()){
             pass.setError("O campo não pode estar vazio");
             return false;
         }
         else if (!val.matches(checkPassword)){
-            pass.setError("Senha deve conter 6 digitos!");
+            pass.setError("Senha deve conter o minimo de 6 digitos!");
             return false;
         }
         else{
             pass.setError(null);
-            pass.setErrorEnabled(false);
             return true;
         }
 

@@ -19,9 +19,11 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:contentDescription="@string/sign_back2"
+            android:onClick="BackPage1"
             android:padding="5dp"
             android:src="@drawable/ic_backto"
-            android:transitionName="transitionBackPage" />
+            android:transitionName="transitionBackPage"
+            tools:ignore="TouchTargetSizeCheck" />
 
         <TextView
             android:id="@+id/acc2"
@@ -45,6 +47,7 @@
                 android:textSize="18sp" />
 
             <RadioGroup
+                android:id="@+id/generoEsc"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_gravity="center"
@@ -84,6 +87,7 @@
                 android:textSize="18sp" />
 
             <DatePicker
+                android:id="@+id/nascimento"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:calendarViewShown="false"

@@ -11,6 +11,7 @@ import android.widget.DatePicker;
 import android.widget.ImageView;
 import android.widget.NumberPicker;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.doctorschedule.User.MainPageUser;
 
@@ -23,11 +24,13 @@ public class Scheduling extends AppCompatActivity {
     DatePickerDialog.OnDateSetListener setListener;
     NumberPicker hora, minuto, tipodn;
     CardView dateChooseCard;
-    TextView dateChoiseText;
+    TextView dateChoiseText, espEcolhida;
     String[] horaConsulta;
     String[] minutoConsulta;
     String[] periodoConsulta;
     ImageView backtoboardS;
+    CardView especialidade_card;
+    CardView medic_card;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +43,9 @@ public class Scheduling extends AppCompatActivity {
         horaConsulta = getResources().getStringArray(R.array.horario);
         minutoConsulta = getResources().getStringArray(R.array.minutos);
         periodoConsulta = getResources().getStringArray(R.array.periodo);
+        especialidade_card = findViewById(R.id.especialidade_card);
+        medic_card = findViewById(R.id.medic_card);
+        espEcolhida = findViewById(R.id.especi_text);
 
         Calendar calendar = Calendar.getInstance();
 
@@ -61,6 +67,9 @@ public class Scheduling extends AppCompatActivity {
         tipodn.setMaxValue(3);
         tipodn.setDisplayedValues(periodoConsulta);
 
+        //String espcial = getIntent().getStringExtra("esp");
+        //espEcolhida.setText(espcial);
+
 
         backtoboardS.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -69,6 +78,23 @@ public class Scheduling extends AppCompatActivity {
                 startActivity(backtoboardS);
             }
         });
+
+        especialidade_card.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent medicaltype = new Intent(getApplicationContext(), MedicalType.class);
+                startActivity(medicaltype);
+            }
+        });
+
+        medic_card.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent medicalprof = new Intent(getApplicationContext(), Doctor.class);
+                startActivity(medicalprof);
+            }
+        });
+
         dateChooseCard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -83,6 +109,8 @@ public class Scheduling extends AppCompatActivity {
                 datePickerDialog.show();
             }
         });
+
+
 
     }
 }

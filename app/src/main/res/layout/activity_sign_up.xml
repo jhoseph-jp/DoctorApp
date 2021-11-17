@@ -20,9 +20,11 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:contentDescription="@string/sign_back"
+            android:onClick="BackOnBorarding"
             android:padding="5dp"
             android:src="@drawable/ic_backto"
-            android:transitionName="transitionBackPage" />
+            android:transitionName="transitionBackPage"
+            tools:ignore="TouchTargetSizeCheck" />
 
         <TextView
             android:id="@+id/createAccount"
@@ -41,7 +43,6 @@
             android:orientation="vertical">
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/txtFullNameSignUp"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -49,12 +50,12 @@
                 app:startIconDrawable="@drawable/ic_person">
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/txtFullNameSignUp"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/txtCPF"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -62,13 +63,13 @@
                 app:startIconDrawable="@drawable/ic_cpf">
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/txtCPF"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="number" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/txtRg"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -76,13 +77,13 @@
                 app:startIconDrawable="@drawable/ic_cpf">
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/txtRg"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="number" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/txtEmailSignUp"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -90,12 +91,12 @@
                 app:startIconDrawable="@drawable/ic_email">
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/txtEmailSignUp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/txtPasswordSignUp"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -105,6 +106,7 @@
                 app:startIconDrawable="@drawable/ic_lock">
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/txtPasswordSignUp"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:inputType="textPassword" />
@@ -112,7 +114,6 @@
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/txtConfirmPasswordSignUp"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -122,6 +123,7 @@
                 app:startIconDrawable="@drawable/ic_lock">
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/txtConfirmPasswordSignUp"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:inputType="textPassword" />

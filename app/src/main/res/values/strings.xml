@@ -76,7 +76,10 @@
     <string name="cpf_user">CPF:</string>
     <string name="idade_user">Idade:</string>
     <string name="date_consult">Data:</string>
-    <string name="especiaLidade">Especialidade:</string>
+    <string name="especiaLidades">Especialidade:</string>
+    <string name="especiaLidade">Especialidade</string>
+    <string name="especialidade">Especialidade</string>
+    <string name="doctor">Medicos</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>

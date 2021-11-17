@@ -19,6 +19,9 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:contentDescription="@string/signup3"
+            android:minWidth="48dp"
+            android:minHeight="48dp"
+            android:onClick="BackPage2"
             android:padding="5dp"
             android:src="@drawable/ic_backto"
             android:transitionName="transitionBackPage" />
@@ -39,7 +42,7 @@
             android:orientation="vertical">
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/txtCEP"
+
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -47,61 +50,71 @@
                 app:startIconDrawable="@drawable/ic_cep">
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/txtCEP"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="number" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/txtAddress"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/endereco">
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/txtAddress"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/txtNumberhome"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/numero">
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/txtNumberhome"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="number" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/txtState"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/estado">
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/txtState"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/txtCity"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/city">
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/txtCity"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
             </com.google.android.material.textfield.TextInputLayout>
 
         </LinearLayout>
+
+        <Button
+            android:id="@+id/callcep"
+            android:onClick="callcepsearch"
+            style="?attr/materialButtonOutlinedStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="buscar cep" />
 
         <Button
             android:id="@+id/SignUp3rdNextBtn"
@@ -112,5 +125,6 @@
             android:text="@string/next_sign_btn3"
             android:onClick="callSign3toNext"
             android:transitionName="transitionNextBtn" />
+
     </LinearLayout>
 </ScrollView>
