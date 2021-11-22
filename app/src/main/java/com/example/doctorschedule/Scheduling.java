@@ -24,20 +24,21 @@ public class Scheduling extends AppCompatActivity {
     DatePickerDialog.OnDateSetListener setListener;
     NumberPicker hora, minuto, tipodn;
     CardView dateChooseCard;
-    TextView dateChoiseText, espEcolhida;
+    TextView dateChoiseText, espEcolhida, medicoselected;
     String[] horaConsulta;
     String[] minutoConsulta;
     String[] periodoConsulta;
-    ImageView backtoboardS;
     CardView especialidade_card;
     CardView medic_card;
+
+    static final int ACTIVITY_2_REQUEST = 1;
+    static final int ACTIVITY_3_REQUEST = 2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_scheduling);
 
-        backtoboardS = findViewById(R.id.scheduling_back);
         dateChooseCard = findViewById(R.id.choose_date);
         dateChoiseText = findViewById(R.id.date_choise);
         horaConsulta = getResources().getStringArray(R.array.horario);
@@ -46,6 +47,7 @@ public class Scheduling extends AppCompatActivity {
         especialidade_card = findViewById(R.id.especialidade_card);
         medic_card = findViewById(R.id.medic_card);
         espEcolhida = findViewById(R.id.especi_text);
+        medicoselected = findViewById(R.id.Medicname);
 
         Calendar calendar = Calendar.getInstance();
 
@@ -67,34 +69,6 @@ public class Scheduling extends AppCompatActivity {
         tipodn.setMaxValue(3);
         tipodn.setDisplayedValues(periodoConsulta);
 
-        //String espcial = getIntent().getStringExtra("esp");
-        //espEcolhida.setText(espcial);
-
-
-        backtoboardS.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent backtoboardS = new Intent(getApplicationContext(), MainPageUser.class);
-                startActivity(backtoboardS);
-            }
-        });
-
-        especialidade_card.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent medicaltype = new Intent(getApplicationContext(), MedicalType.class);
-                startActivity(medicaltype);
-            }
-        });
-
-        medic_card.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent medicalprof = new Intent(getApplicationContext(), Doctor.class);
-                startActivity(medicalprof);
-            }
-        });
-
         dateChooseCard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -111,6 +85,42 @@ public class Scheduling extends AppCompatActivity {
         });
 
 
+    }
 
+    public void BackApp(View v) {
+        this.finish();
+    }
+
+    public void EnterEsp(View v) {
+
+        Intent medicaltype = new Intent(getApplicationContext(), MedicalType.class);
+        startActivityForResult(medicaltype, ACTIVITY_2_REQUEST);
+
+    }
+
+    public void EnterDoc(View v) {
+        Intent medicalprof = new Intent(getApplicationContext(), Doctor.class);
+        startActivityForResult(medicalprof, ACTIVITY_3_REQUEST);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == ACTIVITY_2_REQUEST) {
+            if (resultCode == RESULT_OK) {
+                String resultado = data.getStringExtra("espe");
+                espEcolhida.setText(resultado);
+            }
+        }
+       else if (requestCode == ACTIVITY_3_REQUEST) {
+            if (resultCode == RESULT_OK) {
+                String resultado2 = data.getStringExtra("med");
+                medicoselected.setText(resultado2);
+            }
+        }
+       else {
+            super.onActivityResult(requestCode, resultCode, data);
+        }
     }
 }

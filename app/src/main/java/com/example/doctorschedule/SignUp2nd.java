@@ -39,6 +39,7 @@ public class SignUp2nd extends AppCompatActivity {
         account2 = findViewById(R.id.acc2);
         nascimento = findViewById(R.id.nascimento);
         generoEsc = findViewById(R.id.generoEsc);
+
     }
 
     public void BackPage1(View v) {
@@ -57,6 +58,8 @@ public class SignUp2nd extends AppCompatActivity {
         selecionagenero = findViewById(generoEsc.getCheckedRadioButtonId());
         String generoescolhido = selecionagenero.getText().toString();
 
+        Toast.makeText(this, generoescolhido, Toast.LENGTH_SHORT).show();
+
         int day = nascimento.getDayOfMonth();
         int month = nascimento.getMonth();
         int year = nascimento.getYear();
@@ -69,14 +72,12 @@ public class SignUp2nd extends AppCompatActivity {
         String rgPg2 = getIntent().getStringExtra("rg");
         String emailPg2 = getIntent().getStringExtra("emailPerson");
         String passPg2 = getIntent().getStringExtra("pass");
-        String repassPg2 = getIntent().getStringExtra("confrimPass");
 
         callNextStep3.putExtra("fullName", namePg2);
         callNextStep3.putExtra("cpf",cpfPg2);
         callNextStep3.putExtra("rg",rgPg2);
         callNextStep3.putExtra("emailPerson",emailPg2);
         callNextStep3.putExtra("pass",passPg2);
-        callNextStep3.putExtra("confrimPass",repassPg2);
          callNextStep3.putExtra("genero",generoescolhido);
          callNextStep3.putExtra("nascimento", date);
 

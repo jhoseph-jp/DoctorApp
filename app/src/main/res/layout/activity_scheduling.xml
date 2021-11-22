@@ -24,6 +24,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
                 android:padding="5dp"
+                android:onClick="BackApp"
                 android:src="@drawable/ic_backto">
 
             </ImageView>
@@ -142,6 +143,7 @@
             android:layout_marginTop="10dp">
 
             <com.google.android.material.card.MaterialCardView
+                android:onClick="EnterEsp"
                 android:id="@+id/especialidade_card"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -181,7 +183,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
-                app:cardElevation="8dp">
+                app:cardElevation="8dp"
+                android:onClick="EnterDoc">
 
                 <LinearLayout
                     android:layout_width="wrap_content"

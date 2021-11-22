@@ -24,6 +24,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
                 android:padding="5dp"
+                android:onClick="BackSchedulingMedicos"
                 android:src="@drawable/ic_backto">
 
             </ImageView>
@@ -63,22 +64,13 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:layout_height="wrap_content">
 
-            <LinearLayout
+
+            <ListView
+                android:id="@+id/ListViewMedicos"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
-
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/RecyclerViewDoctor"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
-
-            </LinearLayout>
+                android:layout_height="550dp" />
         </LinearLayout>
-
-
-    </LinearLayout>
+        </LinearLayout>
 </ScrollView>

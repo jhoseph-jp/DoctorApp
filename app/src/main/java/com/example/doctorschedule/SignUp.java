@@ -47,7 +47,7 @@ public class SignUp extends AppCompatActivity {
     }
 
     public void callNextSignUpPage(View view){
-       /* if (!validateFullName() | !validatecpf() | !validatecrg() | !validateEmail() | !validatePassword()){
+       /* if (!validateFullName() | !validatecpf() | !validatecrg() | !validateEmail() | !validatePassword() | validateconfirmPassword | validPassMatches){
             return;
         }*/
 
@@ -147,5 +147,46 @@ public class SignUp extends AppCompatActivity {
             return true;
         }
 
+    }
+
+    private boolean validateconfirmPassword(){
+        String val = confrimPass.getText().toString().trim();
+        String checkPassword = ("^" +
+                // "(?=.*[0-9])" +
+                //"(?=.*[a-z])" +
+                //"(?=.*[A-Z])" +
+                "(?=.*[a-zA-Z])" +
+                //  "(?=.*[@#$%^&+=])" +
+                "(?=\\S+$)" +
+                ".{4,}" +
+                "$");
+
+        if (val.isEmpty()){
+            pass.setError("O campo não pode estar vazio");
+            return false;
+        }
+        else if (!val.matches(checkPassword)){
+            pass.setError("Senha deve conter o minimo de 6 digitos!");
+            return false;
+        }
+        else{
+            pass.setError(null);
+            return true;
+        }
+
+    }
+
+    private boolean validPassMatches(){
+        String passwordS = pass.getText().toString().trim();
+        String repas = confrimPass.getText().toString().trim();
+
+        if (!passwordS.matches(repas)){
+            confrimPass.setError("A senha não está igual");
+            return false;
+        }
+        else {
+            confrimPass.setError(null);
+            return true;
+        }
     }
 }
