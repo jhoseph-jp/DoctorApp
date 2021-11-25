@@ -30,8 +30,8 @@ public class MedicalType extends AppCompatActivity {
     private String url = "https://doctor-schedule-api.herokuapp.com/medicos";
     ListView funcao;
     String escolhaFeita;
-    List<String> espDados = new ArrayList<String>();
-    List<SpecialtyModel> escTipo = new ArrayList<SpecialtyModel>();
+    List<String> espDados = new ArrayList<>();
+
 
 
     @Override
@@ -59,16 +59,11 @@ public class MedicalType extends AppCompatActivity {
                     for (int i = 0; i < response.length(); i++) {
                         JSONObject jsonObjectSpec = response.getJSONObject(i);
                         SpecialtyModel specialtyModel = new SpecialtyModel();
+                        specialtyModel.setId(jsonObjectSpec.getString("id"));
                         specialtyModel.setNome_especialidade(jsonObjectSpec.getJSONObject("especialidade").getString("nome_especialidade"));
                         espDados.add(specialtyModel.getNome_especialidade());
                     }
-                   /* for (int i = 0; i < response.length(); i++) {
-                        JSONObject jsonObjectSpec2 = response.getJSONObject(i);
-                        SpecialtyModel specialtyModel2 = new SpecialtyModel();
-                        specialtyModel2.setId(jsonObjectSpec2.getString("id"));
-                        specialtyModel2.setNome_especialidade(jsonObjectSpec2.getJSONObject("especialidade").getString("nome_especialidade"));
-                        escTipo.add(specialtyModel2);
-                    }*/
+
                 } catch (JSONException e) {
                     Toast.makeText(MedicalType.this, "Um erro ocorreu no Json", Toast.LENGTH_SHORT).show();
                 }
@@ -81,12 +76,6 @@ public class MedicalType extends AppCompatActivity {
 
 
                         escolhaFeita = adapterSpec.getItem(position).toString();
-
-                       /* for (int i = 0; i< escTipo.size(); i++){
-                            if (escTipo.){
-
-                            }
-                        }*/
 
                         Intent escolhaEsp = new Intent(getApplicationContext(), Scheduling.class);
                         escolhaEsp.putExtra("espe", escolhaFeita);

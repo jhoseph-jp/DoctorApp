@@ -2,6 +2,7 @@ package com.example.doctorschedule;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -28,6 +29,7 @@ public class Login extends AppCompatActivity {
     TextInputEditText emailLogin, passLogin;
     String url = "https://doctor-schedule-api.herokuapp.com/login";
     String email, senha;
+    ProgressDialog progressDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -102,11 +104,16 @@ public class Login extends AppCompatActivity {
                         Integer code = http.getStatusCode();
                         if (code == 200){
                             try {
+                                progressDialog = new ProgressDialog(Login.this);
+                                progressDialog.setMessage("Aguarde...Fazendo login");
+                                progressDialog.setIndeterminate(true);
+                                progressDialog.show();
                                 JSONObject response = new JSONObject(http.getReponse());
                                 String token = response.getString("token");
                                 localStorage.setToken(token);
 
                                 Intent userpag = new Intent(getApplicationContext(), MainPageUser.class);
+                                progressDialog.hide();
                                 startActivity(userpag);
                                 finish();
                             } catch (JSONException e){

@@ -31,8 +31,8 @@ public class Doctor extends AppCompatActivity {
     ListView medicos;
     String escolhaFeitaMed;
     List<String> medDados = new ArrayList<String>();
-    private String url = "https://doctor-schedule-api.herokuapp.com/medicos";
-
+   // private String url = "https://doctor-schedule-api.herokuapp.com/medicos";
+    String recId;
 
 
     @Override
@@ -42,10 +42,8 @@ public class Doctor extends AppCompatActivity {
 
         medicos = findViewById(R.id.ListViewMedicos);
 
+        recId = getIntent().getStringExtra("idmedico");
         getDataMed();
-
-
-
 
     }
 
@@ -57,6 +55,7 @@ public class Doctor extends AppCompatActivity {
         ProgressDialog progressDialog = new ProgressDialog(this);
         progressDialog.setMessage("Carregando..");
         progressDialog.show();
+        String url = "https://doctor-schedule-api.herokuapp.com/medicos/" + recId;
         JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(url, new Response.Listener<JSONArray>() {
             @Override
             public void onResponse(JSONArray response) {

@@ -12,6 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.DoctorSchedule">
         <activity
+            android:name=".ScheduleDone"
+            android:exported="false" />
+        <activity
             android:name=".Doctor"
             android:exported="false" />
         <activity
