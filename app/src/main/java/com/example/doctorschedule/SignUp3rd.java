@@ -62,15 +62,14 @@ public class SignUp3rd extends AppCompatActivity {
         estado = findViewById(R.id.txtState);
         cidade = findViewById(R.id.txtCity);
 
-       // String passCep = cep.getText().toString();
-
-       // url = "https://viacep.com.br/ws/" + passCep + "/json/";
 
     }
 
     public void BackPage2(View v) {
         this.finish();
     }
+
+
 
     public void callcepsearch(View v) {
         String passCep = cep.getText().toString();
@@ -103,7 +102,6 @@ public class SignUp3rd extends AppCompatActivity {
         String rgPg3 = getIntent().getStringExtra("rg");
         String emailPg3 = getIntent().getStringExtra("emailPerson");
         String passPg3 = getIntent().getStringExtra("pass");
-        String repassPg3 = getIntent().getStringExtra("confrimPass");
         String generoPg3 = getIntent().getStringExtra("genero");
         String datePg3 = getIntent().getStringExtra("nascimento");
 
@@ -112,7 +110,6 @@ public class SignUp3rd extends AppCompatActivity {
         CallNextStep4.putExtra("rg", rgPg3);
         CallNextStep4.putExtra("emailPerson", emailPg3);
         CallNextStep4.putExtra("pass", passPg3);
-        CallNextStep4.putExtra("confrimPass", repassPg3);
         CallNextStep4.putExtra("genero", generoPg3);
         CallNextStep4.putExtra("nascimento", datePg3);
 
@@ -133,45 +130,6 @@ public class SignUp3rd extends AppCompatActivity {
 
 
     }
-
-
-
-
-   /* private void getDatacep() {
-
-        ProgressDialog progressDialog = new ProgressDialog(this);
-        progressDialog.setMessage("Carregando..");
-        progressDialog.show();
-        JsonArrayRequest jsonArrayRequest =new JsonArrayRequest(url, new Response.Listener<JSONArray>() {
-            @Override
-            public void onResponse(JSONArray response) {
-                try {
-                    for (int i = 0; i < response.length(); i++) {
-                        JSONObject jsonObject = response.getJSONObject(i);
-
-                        end.setText(jsonObject.getString("logradouro"));
-                        estado.setText(jsonObject.getString("uf"));
-                        cidade.setText(jsonObject.getString("localidade"));
-                    }
-                }
-                catch (JSONException e){
-                    Toast.makeText(SignUp3rd.this,"Um erro ocorreu no Json",Toast.LENGTH_SHORT).show();
-                }
-                progressDialog.dismiss();
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                progressDialog.dismiss();
-                Toast.makeText(SignUp3rd.this,"Um erro ocorreu",Toast.LENGTH_SHORT).show();
-            }
-        });
-
-        RequestQueue requestQueue = Volley.newRequestQueue(this);
-        requestQueue.add(jsonArrayRequest);
-
-    }*/
-
     // CLASSE ASYNCTASK REALIZAR CHAMADA WEB SERVICES
     protected class consultaCep extends AsyncTask<String, Void, String> {
 

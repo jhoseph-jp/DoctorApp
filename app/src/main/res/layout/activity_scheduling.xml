@@ -23,6 +23,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
+                android:onClick="BackApp"
                 android:padding="5dp"
                 android:src="@drawable/ic_backto">
 
@@ -92,18 +93,17 @@
                     android:layout_margin="10dp"
                     android:orientation="vertical">
 
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:id="@+id/pacient"
+                    <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/time_consult"
-                        android:textStyle="bold" />
-                </LinearLayout>
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/time_consult"
+                            android:textStyle="bold" />
+                    </LinearLayout>
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -115,19 +115,19 @@
                             android:id="@+id/haour"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_margin="10dp"/>
+                            android:layout_margin="10dp" />
 
                         <NumberPicker
                             android:id="@+id/min"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_margin="10dp"/>
+                            android:layout_margin="10dp" />
 
                         <NumberPicker
                             android:id="@+id/type_choise"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_margin="10dp"/>
+                            android:layout_margin="10dp" />
 
                     </LinearLayout>
 
@@ -209,8 +209,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="@string/agend">
-        </Button>
+            android:text="@string/agend"></Button>
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="TextView" />
 
     </LinearLayout>
 </ScrollView>

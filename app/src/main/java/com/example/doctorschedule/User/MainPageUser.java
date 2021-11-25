@@ -13,8 +13,11 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import com.example.doctorschedule.Clinics;
+import com.example.doctorschedule.Http;
+import com.example.doctorschedule.Login;
 import com.example.doctorschedule.MyCard;
 import com.example.doctorschedule.MyExams;
 import com.example.doctorschedule.MyScheduling;
@@ -23,6 +26,9 @@ import com.example.doctorschedule.ProfessionalAreas;
 import com.example.doctorschedule.R;
 import com.example.doctorschedule.Scheduling;
 import com.google.android.material.navigation.NavigationView;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 public class MainPageUser extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -37,7 +43,7 @@ public class MainPageUser extends AppCompatActivity implements NavigationView.On
     NavigationView navigationView;
     ImageView menuIcon;
     LinearLayout content;
-    //private MenuItem item;
+    private MenuItem item;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,7 +60,7 @@ public class MainPageUser extends AppCompatActivity implements NavigationView.On
         myCards = findViewById(R.id.my_cards);
         schedule = findViewById(R.id.scheduling);
         myConsults = findViewById(R.id.my_consults);
-        myExams =  findViewById(R.id.my_exam);
+        myExams = findViewById(R.id.my_exam);
         profArea = findViewById(R.id.Prof_areas);
         clinics = findViewById(R.id.clinics);
 
@@ -149,6 +155,21 @@ public class MainPageUser extends AppCompatActivity implements NavigationView.On
             }
         });
 
+        /*item.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
+                switch (item.getItemId()){
+                    case R.id.nav_logout:
+                        Toast.makeText(getApplicationContext(), "deu certo", Toast.LENGTH_SHORT).show();
+                        return true;
+                    default:
+                        return false;
+                }
+
+
+            }
+        });*/
+
     }
 
     @Override
@@ -160,6 +181,43 @@ public class MainPageUser extends AppCompatActivity implements NavigationView.On
 
     @Override
     public boolean onNavigationItemSelected(@NonNull @org.jetbrains.annotations.NotNull MenuItem item) {
-        return true;
+
+        switch (item.getItemId()) {
+            case R.id.nav_logout:
+                Toast.makeText(getApplicationContext(), "deu certo", Toast.LENGTH_SHORT).show();
+                return true;
+            default:
+                return false;
+        }
+    }
+
+    private void Logout() {
+        String url = "";
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                Http http = new Http(MainPageUser.this, url);
+                http.setMethod("post");
+                http.setToken(true);
+                http.send();
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        Integer code = http.getStatusCode();
+                        if (code == 200) {
+                            Intent logout = new Intent(getApplicationContext(), Login.class);
+                            startActivity(logout);
+                            finish();
+                        } else {
+                            Toast.makeText(getApplicationContext(), "Erro no logout", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
+            }
+        }).start();
+    }
+
+    private void CheckUserToConsult(){
+
     }
 }

@@ -33,6 +33,7 @@
             android:contentDescription="@string/login_back"
             android:padding="5dp"
             android:src="@drawable/ic_backto"
+            android:onClick="BackBoard"
             android:transitionName="transitionBackPage" />
 
         <TextView
