@@ -28,8 +28,9 @@ public class Login extends AppCompatActivity {
     LocalStorage localStorage;
     TextInputEditText emailLogin, passLogin;
     String url = "https://doctor-schedule-api.herokuapp.com/login";
-    String email, senha;
+    String email, senha, idget;
     ProgressDialog progressDialog;
+    private String tokenUser, id;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -81,6 +82,10 @@ public class Login extends AppCompatActivity {
     }
 
     private void SendLogin(){
+        progressDialog = new ProgressDialog(Login.this);
+        progressDialog.setMessage("Aguarde...Fazendo login");
+        progressDialog.setIndeterminate(true);
+        progressDialog.show();
         JSONObject params = new JSONObject();
         try {
             params.put("email", email);
@@ -104,24 +109,40 @@ public class Login extends AppCompatActivity {
                         Integer code = http.getStatusCode();
                         if (code == 200){
                             try {
-                                progressDialog = new ProgressDialog(Login.this);
-                                progressDialog.setMessage("Aguarde...Fazendo login");
-                                progressDialog.setIndeterminate(true);
-                                progressDialog.show();
                                 JSONObject response = new JSONObject(http.getReponse());
                                 String token = response.getString("token");
                                 localStorage.setToken(token);
 
-                                Intent userpag = new Intent(getApplicationContext(), MainPageUser.class);
-                                progressDialog.hide();
-                                startActivity(userpag);
-                                finish();
+                                if (response.getJSONObject("user").getString("role").equals("doctor")){
+                                    String tokenMed = response.getString("tokenHash");
+
+                                    Intent doctorDash = new Intent(getApplicationContext(), DoctorDashboard.class);
+                                    doctorDash.putExtra("tokenmed", tokenMed);
+                                    setResult(RESULT_OK, doctorDash);
+                                    progressDialog.hide();
+                                    startActivity(doctorDash);
+                                    finish();
+                                }
+
+                                else {
+
+                                    id = response.getJSONObject("user").getString("id").toString();
+                                   tokenUser = response.getString("tokenHash");
+                                    Intent userpag = new Intent(getApplicationContext(), MainPageUser.class);
+                                    userpag.putExtra("iduser", id);
+                                    userpag.putExtra("tokenUser", tokenUser);
+                                    setResult(RESULT_OK, userpag);
+                                    progressDialog.hide();
+                                    startActivity(userpag);
+                                    finish();
+                                }
                             } catch (JSONException e){
                                 e.printStackTrace();
                             }
                         }
                         else if (code == 422){
                             try {
+                                progressDialog.hide();
                                 JSONObject reponse = new JSONObject(http.getReponse());
                                 String msg = reponse.getString("message");
                                 Toast.makeText(getApplicationContext(), msg, Toast.LENGTH_SHORT).show();
@@ -131,6 +152,7 @@ public class Login extends AppCompatActivity {
                         }
                         else if (code == 401){
                             try {
+                                progressDialog.hide();
                                 JSONObject reponse = new JSONObject(http.getReponse());
                                 String msg = reponse.getString("message");
                                 Toast.makeText(getApplicationContext(), msg, Toast.LENGTH_SHORT).show();
@@ -139,6 +161,7 @@ public class Login extends AppCompatActivity {
                             }
                         }
                         else{
+                            progressDialog.hide();
                             Toast.makeText(Login.this, "Erro" + code, Toast.LENGTH_SHORT).show();
                         }
                     }

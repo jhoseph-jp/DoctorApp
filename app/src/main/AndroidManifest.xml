@@ -12,6 +12,18 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.DoctorSchedule">
         <activity
+            android:name=".DoctorAgenda"
+            android:exported="false" />
+        <activity
+            android:name=".DoctorDashboard"
+            android:exported="false" />
+        <activity
+            android:name=".SchedulingCalendar"
+            android:exported="false" />
+        <activity
+            android:name=".ClinicList"
+            android:exported="false" />
+        <activity
             android:name=".ScheduleDone"
             android:exported="false" />
         <activity

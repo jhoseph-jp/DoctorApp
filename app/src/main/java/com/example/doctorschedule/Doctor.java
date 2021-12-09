@@ -63,7 +63,7 @@ public class Doctor extends AppCompatActivity {
                     for (int i = 0; i < response.length(); i++) {
                         JSONObject jsonObjectSpec = response.getJSONObject(i);
                         SpecialtyModel specialtyModelMed = new SpecialtyModel();
-                        specialtyModelMed.setNome_medico(jsonObjectSpec.getString("nome_medico"));
+                        specialtyModelMed.setNome_medico(jsonObjectSpec.getString("nome"));
                         medDados.add(specialtyModelMed.getNome_medico());
                     }
                 } catch (JSONException e) {

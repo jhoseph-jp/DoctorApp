@@ -1,5 +1,6 @@
 package com.example.doctorschedule;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.ActivityOptions;
@@ -11,10 +12,12 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import com.example.doctorschedule.Common.TestSignUp;
+import com.google.android.material.textfield.TextInputLayout;
 
 public class OnBoarding extends AppCompatActivity {
 
-    Button LoginOnBBtn, SignUpOnBBtn;
+    Button LoginOnBBtn, SignUpOnBBtn, signMed;
+    TextInputLayout cardcrm;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -22,6 +25,8 @@ public class OnBoarding extends AppCompatActivity {
 
         LoginOnBBtn = findViewById(R.id.LoginOnBBtn);
         SignUpOnBBtn = findViewById(R.id.SignUpOnBBtn);
+        signMed = findViewById(R.id.SignUpMedic);
+        cardcrm = findViewById(R.id.cardCRM);
 
     }
 
@@ -43,5 +48,12 @@ public class OnBoarding extends AppCompatActivity {
         ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(OnBoarding.this, pairs);
         startActivity(callSignUp, options.toBundle());
 
+    }
+
+    public void callSignupMed(View view) {
+        Intent callMed = new Intent(OnBoarding.this,SignUp.class);
+       // cardcrm.setVisibility(View.VISIBLE);
+        callMed.putExtra("classFrom", OnBoarding.class.toString());
+        startActivity(callMed);
     }
 }

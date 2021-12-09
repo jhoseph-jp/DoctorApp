@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="15dp"
+    android:background="@drawable/background_doctor"
     tools:context=".SignUp2nd">
 
     <LinearLayout
@@ -102,6 +103,8 @@
                 android:layout_marginTop="20dp"
                 android:onClick="callSign2toNext"
                 android:text="@string/next_sign_btn2"
+                android:backgroundTint="@color/plum"
+                android:textColor="@color/white"
                 android:transitionName="transitionNextBtn" />
 
 

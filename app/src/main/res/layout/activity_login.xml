@@ -6,7 +6,8 @@
     android:layout_height="match_parent"
     android:padding="15dp"
     android:transitionName="transition_login"
-    tools:context=".Login">
+    tools:context=".Login"
+    android:background="@drawable/background_doctor">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -96,6 +97,8 @@
                 <Button
                     android:id="@+id/forgotPasswordBtn"
                     style="?attr/materialButtonOutlinedStyle"
+                    android:textColor="@color/white"
+                    android:backgroundTint="@color/plum"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
@@ -109,10 +112,14 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
                 android:layout_marginTop="20dp"
-                android:text="@string/get_in" />
+                android:text="@string/get_in"
+                android:backgroundTint="@color/plum"
+                android:textColor="@color/white"/>
 
             <Button
                 android:id="@+id/SignInBtn"
+                android:backgroundTint="@color/plum"
+                android:textColor="@color/white"
                 style="@style/Widget.MaterialComponents.Button.TextButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

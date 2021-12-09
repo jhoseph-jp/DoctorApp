@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/background_doctor"
     tools:context=".OnBoarding">
 
     <LinearLayout
@@ -19,6 +20,7 @@
             android:gravity="center"
             android:text="@string/welcome"
             android:textSize="40sp"
+            android:textColor="#6C74AC"
             android:transitionName="transitionTittleName" />
 
         <LinearLayout
@@ -35,11 +37,15 @@
                 android:layout_weight="1"
                 android:text="@string/login_onboard"
                 android:onClick="callLogin"
+                android:backgroundTint="@color/plum"
+                android:textColor="@color/white"
                 android:transitionName="transition_login" />
 
             <Button
                 android:id="@+id/SignUpOnBBtn"
                 style="?attr/materialButtonOutlinedStyle"
+                android:backgroundTint="@color/plum"
+                android:textColor="@color/white"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -48,9 +54,45 @@
                 android:transitionName="transition_signUp"
                 android:onClick="callSignup"
                 android:text="@string/sign_onboard" />
+        </LinearLayout>
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/Area_medica"
+                android:textAlignment="center"
+                android:textStyle="bold"
+                android:textSize="15dp">
+            </TextView>
 
         </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp">
+
+            <Button
+                android:id="@+id/SignUpMedic"
+                android:backgroundTint="@color/plum"
+                android:textColor="@color/white"
+                style="?attr/materialButtonOutlinedStyle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginStart="10dp"
+                android:layout_weight="1"
+                android:transitionName="transition_signUp"
+                android:onClick="callSignupMed"
+                android:text="@string/med" />
+        </LinearLayout>
+
     </LinearLayout>
 
 </ScrollView>

@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     android:padding="15dp"
     android:transitionName="transition_signUp"
+    android:background="@drawable/background_doctor"
     tools:context=".SignUp">
 
     <LinearLayout
@@ -84,6 +85,22 @@
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/cardCRM"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/crm"
+                app:startIconDrawable="@drawable/ic_cpf"
+                android:visibility="gone">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/txtcrm"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="number" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -132,6 +149,8 @@
 
             <Button
                 android:id="@+id/SignUpFstBtn"
+                android:backgroundTint="@color/plum"
+                android:textColor="@color/white"
                 style="?attr/materialButtonOutlinedStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

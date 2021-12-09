@@ -34,9 +34,11 @@ public class MainPageUser extends AppCompatActivity implements NavigationView.On
 
     //variables
 
-    CardView myCards, schedule, myConsults, clinics, myExams, profArea;
+    CardView myCards, schedule, myConsults, clinics, profArea;
+   private String passinfoUser, passtoken;
 
     static final float END_SCALE = 0.7f;
+    static final int ACTIVITY_1_REQUEST = 1;
 
     //menu
     DrawerLayout drawerLayout;
@@ -44,11 +46,15 @@ public class MainPageUser extends AppCompatActivity implements NavigationView.On
     ImageView menuIcon;
     LinearLayout content;
     private MenuItem item;
-
+    String passUser;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_page_user);
+
+        passinfoUser = getIntent().getStringExtra("iduser");
+        passtoken = getIntent().getStringExtra("tokenUser");
+
 
 
         //menu
@@ -60,7 +66,6 @@ public class MainPageUser extends AppCompatActivity implements NavigationView.On
         myCards = findViewById(R.id.my_cards);
         schedule = findViewById(R.id.scheduling);
         myConsults = findViewById(R.id.my_consults);
-        myExams = findViewById(R.id.my_exam);
         profArea = findViewById(R.id.Prof_areas);
         clinics = findViewById(R.id.clinics);
 
@@ -73,6 +78,7 @@ public class MainPageUser extends AppCompatActivity implements NavigationView.On
             @Override
             public void onClick(View v) {
                 Intent mycard = new Intent(getApplicationContext(), MyCard.class);
+                mycard.putExtra("idu",  passinfoUser);
                 startActivity(mycard);
             }
         });
@@ -81,6 +87,7 @@ public class MainPageUser extends AppCompatActivity implements NavigationView.On
             @Override
             public void onClick(View v) {
                 Intent schedule = new Intent(getApplicationContext(), Scheduling.class);
+                schedule.putExtra("tok", passtoken);
                 startActivity(schedule);
             }
         });
@@ -89,6 +96,7 @@ public class MainPageUser extends AppCompatActivity implements NavigationView.On
             @Override
             public void onClick(View v) {
                 Intent myconsult = new Intent(getApplicationContext(), MyScheduling.class);
+                myconsult.putExtra("tokUser", passtoken);
                 startActivity(myconsult);
             }
         });
@@ -98,14 +106,6 @@ public class MainPageUser extends AppCompatActivity implements NavigationView.On
             public void onClick(View v) {
                 Intent clinic = new Intent(getApplicationContext(), Clinics.class);
                 startActivity(clinic);
-            }
-        });
-
-        myExams.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent myexam = new Intent(getApplicationContext(), MyExams.class);
-                startActivity(myexam);
             }
         });
 
@@ -155,21 +155,6 @@ public class MainPageUser extends AppCompatActivity implements NavigationView.On
             }
         });
 
-        /*item.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
-            @Override
-            public boolean onMenuItemClick(MenuItem item) {
-                switch (item.getItemId()){
-                    case R.id.nav_logout:
-                        Toast.makeText(getApplicationContext(), "deu certo", Toast.LENGTH_SHORT).show();
-                        return true;
-                    default:
-                        return false;
-                }
-
-
-            }
-        });*/
-
     }
 
     @Override
@@ -215,9 +200,5 @@ public class MainPageUser extends AppCompatActivity implements NavigationView.On
                 });
             }
         }).start();
-    }
-
-    private void CheckUserToConsult(){
-
     }
 }

@@ -16,6 +16,9 @@ public class Users {
     private String numero;
     private String estado;
     private String cidade;
+    private String funcao;
+    private String crm;
+
 
     public Users() {
         this.id = id;
@@ -32,6 +35,8 @@ public class Users {
         this.numero = numero;
         this.estado = estado;
         this.cidade = cidade;
+        this.funcao = funcao;
+        this.crm = crm;
     }
 
     public String getId() {
@@ -144,5 +149,21 @@ public class Users {
 
     public void setCidade(String cidade) {
         this.cidade = cidade;
+    }
+
+    public String getFuncao() {
+        return funcao;
+    }
+
+    public void setFuncao(String funcao) {
+        this.funcao = funcao;
+    }
+
+    public String getCrm() {
+        return crm;
+    }
+
+    public void setCrm(String crm) {
+        this.crm = crm;
     }
 }

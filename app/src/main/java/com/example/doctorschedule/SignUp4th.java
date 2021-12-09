@@ -39,7 +39,7 @@ public class SignUp4th extends AppCompatActivity {
     ImageView back_SignUp4Btn;
     Button SignUp4thNextBtn;
     TextInputEditText fone;
-    String namePg4, cpfPg4, rgPg4, emailPg4,passPg4, datePg4, generoPg4, cepPg4, endPg4, numPg4, estadoPg4, cidadePg4;
+    String namePg4, cpfPg4, rgPg4, emailPg4,passPg4, datePg4, generoPg4, cepPg4, endPg4, numPg4, estadoPg4, cidadePg4, crm, funcao;
     RequestQueue requestQueue;
 
     @Override
@@ -64,7 +64,8 @@ public class SignUp4th extends AppCompatActivity {
         numPg4 = getIntent().getStringExtra("num");
         estadoPg4 = getIntent().getStringExtra("estado");
         cidadePg4 = getIntent().getStringExtra("cidade");
-
+        crm = getIntent().getStringExtra("crm");
+        funcao = getIntent().getStringExtra("funcao");
     }
 
     public void BackPage3 (View v){
@@ -98,6 +99,8 @@ public class SignUp4th extends AppCompatActivity {
                 params.put("numnero",numPg4);
                 params.put("estado",estadoPg4);
                 params.put("cidade",cidadePg4);
+                params.put("crm",crm);
+                params.put("role",funcao);
                 return params;
             }
 
