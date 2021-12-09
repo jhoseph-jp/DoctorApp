@@ -9,6 +9,18 @@
     tools:context=".User.MainPageUser"
     android:background="@drawable/background_doctor">
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:background="@color/plum" />
+
+    </LinearLayout>
+
     <com.google.android.material.navigation.NavigationView
         android:id="@+id/navegation_view"
         android:layout_width="match_parent"
@@ -62,7 +74,7 @@
                 android:id="@+id/my_cards"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:backgroundTint="#BFC9F6"
+                android:backgroundTint="#FFFFFF"
                 android:layout_row="0"
                 android:layout_rowWeight="1"
                 android:layout_column="0"
@@ -83,7 +95,7 @@
                         android:id="@+id/imageCard"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        tools:srcCompat="@tools:sample/avatars"/>
+                        android:background="@drawable/my_card_user"/>
 
                     <TextView
                         android:id="@+id/b_card"
@@ -91,7 +103,6 @@
                         android:layout_height="wrap_content"
                         android:layout_below="@id/imageCard"
                         android:text="@string/card"
-                        android:textColor="@color/white"
                         android:textStyle="bold" />
                 </LinearLayout>
             </com.google.android.material.card.MaterialCardView>
@@ -100,7 +111,7 @@
                 android:id="@+id/scheduling"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:backgroundTint="#BFC9F6"
+                android:backgroundTint="#FFFFFF"
                 android:layout_row="0"
                 android:layout_rowWeight="1"
                 android:layout_column="1"
@@ -121,7 +132,7 @@
                         android:id="@+id/imageConsult"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        tools:srcCompat="@tools:sample/avatars" />
+                        android:background="@drawable/view_agenda" />
 
                     <TextView
                         android:id="@+id/add_appointment"
@@ -138,7 +149,7 @@
                 android:id="@+id/my_consults"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:backgroundTint="#BFC9F6"
+                android:backgroundTint="#FFFFFF"
                 android:layout_row="1"
                 android:layout_rowWeight="1"
                 android:layout_column="0"
@@ -159,7 +170,7 @@
                         android:id="@+id/imageAppointment"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        tools:srcCompat="@tools:sample/avatars" />
+                        android:background="@drawable/consults" />
 
                     <TextView
                         android:id="@+id/my_appointments"
@@ -176,7 +187,7 @@
                 android:id="@+id/clinics"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:backgroundTint="#BFC9F6"
+                android:backgroundTint="#FFFFFF"
                 android:layout_row="1"
                 android:layout_rowWeight="1"
                 android:layout_column="1"
@@ -197,7 +208,7 @@
                         android:id="@+id/imageHisConsult"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        tools:srcCompat="@tools:sample/avatars" />
+                        android:background="@drawable/clinics_home" />
 
                     <TextView
                         android:id="@+id/clinics_consult"
@@ -214,7 +225,7 @@
                 android:id="@+id/Prof_areas"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:backgroundTint="#BFC9F6"
+                android:backgroundTint="#FFFFFF"
                 android:layout_row="2"
                 android:layout_rowWeight="1"
                 android:layout_column="0"
@@ -235,7 +246,7 @@
                         android:id="@+id/imageProf"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        tools:srcCompat="@tools:sample/avatars" />
+                        android:background="@drawable/areas" />
 
                     <TextView
                         android:id="@+id/areas_prof"

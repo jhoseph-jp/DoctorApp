@@ -169,7 +169,9 @@ public class MainPageUser extends AppCompatActivity implements NavigationView.On
 
         switch (item.getItemId()) {
             case R.id.nav_logout:
-                Toast.makeText(getApplicationContext(), "deu certo", Toast.LENGTH_SHORT).show();
+                Intent i = new Intent(getApplicationContext(), OnBoarding.class);
+                Toast.makeText(getApplicationContext(), "Saindo", Toast.LENGTH_SHORT).show();
+                startActivity(i);
                 return true;
             default:
                 return false;

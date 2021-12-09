@@ -7,15 +7,6 @@
             android:icon="@drawable/ic_home"
             android:title="@string/home"></item>
 
-        <item
-            android:id="@+id/nav_add_card"
-            android:icon="@drawable/ic_cpf"
-            android:title="@string/add_card"></item>
-
-        <item
-            android:id="@+id/nav_tab_prices"
-            android:icon="@drawable/ic_money"
-            android:title="@string/tab_prices"></item>
 
     </group>
 

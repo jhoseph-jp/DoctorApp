@@ -6,11 +6,14 @@
         <entry key="..\:/Users/Jhoseph/AndroidStudioProjects/DoctorSchedule/app/src/main/res/drawable/background_button.xml" value="0.3828125" />
         <entry key="..\:/Users/Jhoseph/AndroidStudioProjects/DoctorSchedule/app/src/main/res/drawable/background_cards.xml" value="0.3828125" />
         <entry key="..\:/Users/Jhoseph/AndroidStudioProjects/DoctorSchedule/app/src/main/res/drawable/background_doctor.xml" value="0.3828125" />
+        <entry key="..\:/Users/Jhoseph/AndroidStudioProjects/DoctorSchedule/app/src/main/res/drawable/ic_baseline_perm_contact_calendar_24.xml" value="0.3828125" />
+        <entry key="..\:/Users/Jhoseph/AndroidStudioProjects/DoctorSchedule/app/src/main/res/drawable/my_card_user.xml" value="0.3828125" />
+        <entry key="..\:/Users/Jhoseph/AndroidStudioProjects/DoctorSchedule/app/src/main/res/drawable/view_agenda.xml" value="0.3828125" />
         <entry key="..\:/Users/Jhoseph/AndroidStudioProjects/DoctorSchedule/app/src/main/res/layout/activity_clinic_list.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/Jhoseph/AndroidStudioProjects/DoctorSchedule/app/src/main/res/layout/activity_clinics.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/Jhoseph/AndroidStudioProjects/DoctorSchedule/app/src/main/res/layout/activity_doctor.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/Jhoseph/AndroidStudioProjects/DoctorSchedule/app/src/main/res/layout/activity_doctor_agenda.xml" value="0.36666666666666664" />
-        <entry key="..\:/Users/Jhoseph/AndroidStudioProjects/DoctorSchedule/app/src/main/res/layout/activity_doctor_dashboard.xml" value="0.33" />
+        <entry key="..\:/Users/Jhoseph/AndroidStudioProjects/DoctorSchedule/app/src/main/res/layout/activity_doctor_dashboard.xml" value="0.25" />
         <entry key="..\:/Users/Jhoseph/AndroidStudioProjects/DoctorSchedule/app/src/main/res/layout/activity_login.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/Jhoseph/AndroidStudioProjects/DoctorSchedule/app/src/main/res/layout/activity_main.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/Jhoseph/AndroidStudioProjects/DoctorSchedule/app/src/main/res/layout/activity_main_page_user.xml" value="0.36666666666666664" />
