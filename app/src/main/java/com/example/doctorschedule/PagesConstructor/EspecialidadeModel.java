@@ -8,6 +8,8 @@ public class EspecialidadeModel {
     private String espEnd;
     private String espETelefone;
     private String espEmail;
+    private String medID;
+    private String nome_medico;
     private String eCreate_at;
 
     public String getIdE() {
@@ -65,6 +67,18 @@ public class EspecialidadeModel {
     public void setEspEmail(String espEmail) {
         this.espEmail = espEmail;
     }
+
+    public String getMedID() {
+        return medID;
+    }
+
+    public void setMedID(String medID) {
+        this.medID = medID;
+    }
+
+    public String getNome_medico() { return nome_medico; }
+
+    public void setNome_medico(String nome_medico) { this.nome_medico = nome_medico; }
 
     public String geteCreate_at() {
         return eCreate_at;

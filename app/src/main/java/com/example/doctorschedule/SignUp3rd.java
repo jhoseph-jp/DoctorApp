@@ -104,6 +104,8 @@ public class SignUp3rd extends AppCompatActivity {
         String passPg3 = getIntent().getStringExtra("pass");
         String generoPg3 = getIntent().getStringExtra("genero");
         String datePg3 = getIntent().getStringExtra("nascimento");
+        String crm3 = getIntent().getStringExtra("crm");
+        String funcao3 = getIntent().getStringExtra("funcao");
 
         CallNextStep4.putExtra("fullName", namePg3);
         CallNextStep4.putExtra("cpf", cpfPg3);
@@ -118,6 +120,8 @@ public class SignUp3rd extends AppCompatActivity {
         CallNextStep4.putExtra("num", num.getText().toString());
         CallNextStep4.putExtra("estado", estado.getText().toString());
         CallNextStep4.putExtra("cidade", cidade.getText().toString());
+        CallNextStep4.putExtra("crm", crm3);
+        CallNextStep4.putExtra("funcao", funcao3);
 
         Pair[] pairs = new Pair[3];
 

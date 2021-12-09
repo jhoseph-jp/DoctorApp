@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="15dp"
-    tools:context=".MedicalType">
+    tools:context=".MedicalType"
+    android:background="@drawable/background_doctor">
 
     <LinearLayout
         android:layout_width="match_parent"

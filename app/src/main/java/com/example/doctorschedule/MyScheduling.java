@@ -11,6 +11,8 @@ import androidx.viewpager.widget.ViewPager;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.webkit.WebView;
+import android.webkit.WebViewClient;
 import android.widget.ImageView;
 import android.widget.TableLayout;
 
@@ -23,99 +25,26 @@ public class MyScheduling extends AppCompatActivity {
 
     //variables
     ImageView backBoardmys;
-    TabItem callNextTab, callRealize, cancelledtab;
-
-
-    private TabLayout tabLayout;
-    private ViewPager viewPager;
-    public VPAdapter pagerAdapter;
+    String url;
+    WebView webViewMyS;
+    private String tokenPatient;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_scheduling);
-        backBoardmys = findViewById(R.id.my_scheduling_back);
-        tabLayout = findViewById(R.id.tabLayout);
-        viewPager = findViewById(R.id.viewPager);
-        callNextTab = findViewById(R.id.tabLayoutnext);
-        callRealize = findViewById(R.id.realize_consult);
-
-        pagerAdapter = new VPAdapter(getSupportFragmentManager(), tabLayout.getTabCount());
-
-        viewPager.setAdapter(pagerAdapter);
-
-        tabLayout.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
-            @Override
-            public void onTabSelected(TabLayout.Tab tab) {
-                viewPager.setCurrentItem(tab.getPosition());
-                if (tab.getPosition() == 0) {
-                    pagerAdapter.notifyDataSetChanged();
-                } else if (tab.getPosition() == 1) {
-                    pagerAdapter.notifyDataSetChanged();
-                } else if (tab.getPosition() == 2) {
-                    pagerAdapter.notifyDataSetChanged();
-                }
-            }
-
-            @Override
-            public void onTabUnselected(TabLayout.Tab tab) {
-
-            }
-
-            @Override
-            public void onTabReselected(TabLayout.Tab tab) {
-
-            }
-        });
-
-        viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
 
 
-        backBoardmys.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent backtoboardmys = new Intent(getApplicationContext(), MainPageUser.class);
-                startActivity(backtoboardmys);
-            }
-        });
+        webViewMyS = (WebView) findViewById(R.id.webviewMyscheduling);
 
-       /* callNextTab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+        tokenPatient = getIntent().getStringExtra("tokUser");
 
-                Testfrag testfrag = new Testfrag();
-                loadfragments(testfrag);
-            }
-        });
+        url = "https://doctor-schedule-rails.herokuapp.com/app/patient/appointments?token=" + tokenPatient;
+        webViewMyS.getSettings().setJavaScriptEnabled(true);
+        webViewMyS.getSettings().setDomStorageEnabled(true);
+        webViewMyS.setWebViewClient(new WebViewClient());
+        //webView.setWebChromeClient(new WebChromeClient());
+        webViewMyS.loadUrl(url);
 
-
-        callRealize.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                DoneConsult doneConsult = new DoneConsult();
-                loadfragments(doneConsult);
-            }
-        });
-
-        cancelledtab = findViewById(R.id.cancelled_consult);
-
-        cancelledtab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                CancelledConsult cancelledConsult = new CancelledConsult();
-                loadfragments(cancelledConsult);
-            }
-        });
-
-    }
-
-    public void loadfragments(Fragment fragment) {
-        FragmentManager fragmentManager = getSupportFragmentManager();
-        FragmentTransaction transaction = fragmentManager.beginTransaction();
-        transaction.replace(R.id.fragmenttv, fragment);
-        transaction.commit();
-    }*/
     }
 }

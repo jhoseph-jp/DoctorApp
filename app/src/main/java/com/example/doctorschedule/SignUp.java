@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.doctorschedule.Common.TestSignUp;
 import com.example.doctorschedule.PagesConstructor.Users;
@@ -21,8 +22,10 @@ public class SignUp extends AppCompatActivity {
 
     ImageView backToOnBoardingSignUp;
     TextView accountView;
-    Button SignUpFstBtn;
-    TextInputEditText fullName, cpf, rg, emailPerson, pass, confrimPass;
+    Button SignUpFstBtn, SignUpMed;
+    TextInputEditText fullName, cpf, rg, emailPerson, pass, confrimPass, textcrm;
+    TextInputLayout cardcrm;
+    String funcao;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,117 +42,131 @@ public class SignUp extends AppCompatActivity {
         pass = findViewById(R.id.txtPasswordSignUp);
         confrimPass = findViewById(R.id.txtConfirmPasswordSignUp);
         accountView = findViewById(R.id.createAccount);
+        SignUpMed = findViewById(R.id.SignUpMedic);
+        cardcrm = findViewById(R.id.cardCRM);
+        textcrm = findViewById(R.id.txtcrm);
+
+        String tipopage = getIntent().getStringExtra("classFrom");
+
+        if (tipopage != null) {
+            cardcrm.setVisibility(View.VISIBLE);
+            funcao = "doctor";
+
+        } else {
+            funcao = "patient";
+            return;
+        }
 
     }
 
-    public void BackOnBorarding( View v){
+    public void BackOnBorarding(View v) {
         this.finish();
     }
 
-    public void callNextSignUpPage(View view){
+    public void callNextSignUpPage(View view) {
        /* if (!validateFullName() | !validatecpf() | !validatecrg() | !validateEmail() | !validatePassword() | validateconfirmPassword | validPassMatches){
             return;
         }*/
 
-        Intent callStep2 = new Intent(getApplicationContext(),SignUp2nd.class);
+        Intent callStep2 = new Intent(getApplicationContext(), SignUp2nd.class);
         callStep2.putExtra("fullName", fullName.getText().toString());
-        callStep2.putExtra("cpf",cpf.getText().toString());
-        callStep2.putExtra("rg",rg.getText().toString());
-        callStep2.putExtra("emailPerson",emailPerson.getText().toString());
-        callStep2.putExtra("pass",pass.getText().toString());
-        callStep2.putExtra("confrimPass",confrimPass.getText().toString());
+        callStep2.putExtra("cpf", cpf.getText().toString());
+        callStep2.putExtra("rg", rg.getText().toString());
+        callStep2.putExtra("emailPerson", emailPerson.getText().toString());
+        callStep2.putExtra("pass", pass.getText().toString());
+        callStep2.putExtra("confrimPass", confrimPass.getText().toString());
+        callStep2.putExtra("crm", textcrm.getText().toString());
+        callStep2.putExtra("funcao", funcao);
 
-        Pair [] pairs = new Pair[3];
+        Pair[] pairs = new Pair[3];
 
-        pairs[0] = new Pair<View,String>(backToOnBoardingSignUp,"transitionBackPage");
-        pairs[1] = new Pair<View,String>(accountView,"transitionTittleName");
-        pairs[2] = new Pair<View,String>(SignUpFstBtn,"transitionNextBtn");
+        pairs[0] = new Pair<View, String>(backToOnBoardingSignUp, "transitionBackPage");
+        pairs[1] = new Pair<View, String>(accountView, "transitionTittleName");
+        pairs[2] = new Pair<View, String>(SignUpFstBtn, "transitionNextBtn");
 
-            ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(SignUp.this, pairs);
-            startActivity(callStep2, options.toBundle());
+        ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(SignUp.this, pairs);
+        startActivity(callStep2, options.toBundle());
     }
+
     //Validation function
-    private boolean validateFullName(){
+    private boolean validateFullName() {
         String val = fullName.getText().toString().trim();
-        if (val.isEmpty()){
+        if (val.isEmpty()) {
             fullName.setError("O campo não pode estar vazio");
             return false;
-        }
-        else{
+        } else {
             fullName.setError(null);
             return true;
         }
 
-        }
-    private boolean validatecpf(){
+    }
+
+    private boolean validatecpf() {
         String val = cpf.getText().toString().trim();
-        if (val.isEmpty()){
+        if (val.isEmpty()) {
             cpf.setError("O campo não pode estar vazio");
             return false;
-        }
-        else{
+        } else {
             cpf.setError(null);
             return true;
         }
 
     }
-    private boolean validatecrg(){
+
+    private boolean validatecrg() {
         String val = rg.getText().toString().trim();
-        if (val.isEmpty()){
+        if (val.isEmpty()) {
             rg.setError("O campo não pode estar vazio");
             return false;
-        }
-        else{
+        } else {
             rg.setError(null);
             return true;
         }
 
     }
-    private boolean validateEmail(){
+
+    private boolean validateEmail() {
         String val = emailPerson.getText().toString().trim();
         String checkEmail = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
-        if (val.isEmpty()){
+        if (val.isEmpty()) {
             emailPerson.setError("O campo não pode estar vazio");
             return false;
-        }
-        else if (!val.matches(checkEmail)){
+        } else if (!val.matches(checkEmail)) {
             emailPerson.setError("Email invalido!");
             return false;
-        }
-        else{
+        } else {
             emailPerson.setError(null);
             return true;
         }
 
     }
-    private boolean validatePassword(){
+
+    private boolean validatePassword() {
         String val = pass.getText().toString().trim();
         String checkPassword = ("^" +
-               // "(?=.*[0-9])" +
-         //"(?=.*[a-z])" +
-         //"(?=.*[A-Z])" +
-               "(?=.*[a-zA-Z])" +
-              //  "(?=.*[@#$%^&+=])" +
+                // "(?=.*[0-9])" +
+                //"(?=.*[a-z])" +
+                //"(?=.*[A-Z])" +
+                "(?=.*[a-zA-Z])" +
+                //  "(?=.*[@#$%^&+=])" +
                 "(?=\\S+$)" +
-               ".{4,}" +
+                ".{4,}" +
                 "$");
 
-        if (val.isEmpty()){
+        if (val.isEmpty()) {
             pass.setError("O campo não pode estar vazio");
             return false;
-        }
-        else if (!val.matches(checkPassword)){
+        } else if (!val.matches(checkPassword)) {
             pass.setError("Senha deve conter o minimo de 6 digitos!");
             return false;
-        }
-        else{
+        } else {
             pass.setError(null);
             return true;
         }
 
     }
 
-    private boolean validateconfirmPassword(){
+    private boolean validateconfirmPassword() {
         String val = confrimPass.getText().toString().trim();
         String checkPassword = ("^" +
                 // "(?=.*[0-9])" +
@@ -161,30 +178,27 @@ public class SignUp extends AppCompatActivity {
                 ".{4,}" +
                 "$");
 
-        if (val.isEmpty()){
+        if (val.isEmpty()) {
             pass.setError("O campo não pode estar vazio");
             return false;
-        }
-        else if (!val.matches(checkPassword)){
+        } else if (!val.matches(checkPassword)) {
             pass.setError("Senha deve conter o minimo de 6 digitos!");
             return false;
-        }
-        else{
+        } else {
             pass.setError(null);
             return true;
         }
 
     }
 
-    private boolean validPassMatches(){
+    private boolean validPassMatches() {
         String passwordS = pass.getText().toString().trim();
         String repas = confrimPass.getText().toString().trim();
 
-        if (!passwordS.matches(repas)){
+        if (!passwordS.matches(repas)) {
             confrimPass.setError("A senha não está igual");
             return false;
-        }
-        else {
+        } else {
             confrimPass.setError(null);
             return true;
         }

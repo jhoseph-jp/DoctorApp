@@ -55,15 +55,6 @@ public class ProfessionalAreas extends AppCompatActivity {
         especiaList = new ArrayList<>();
         getDataEspcial();
 
-        backboardProf.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent backtoboardProf = new Intent(getApplicationContext(), MainPageUser.class);
-                startActivity(backtoboardProf);
-            }
-        });
-
-
     }
 
     private void getDataEspcial() {
@@ -102,5 +93,9 @@ public class ProfessionalAreas extends AppCompatActivity {
 
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         requestQueue.add(jsonArrayRequest);
+    }
+
+    public void backuserMain(View view) {
+        this.finish();
     }
 }

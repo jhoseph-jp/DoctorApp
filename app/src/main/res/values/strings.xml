@@ -80,6 +80,16 @@
     <string name="especiaLidade">Especialidade</string>
     <string name="especialidade">Especialidade</string>
     <string name="doctor">Medicos</string>
+    <string name="schedule1">Proximo</string>
+    <string name="clinicx">Clinica:</string>
+    <string name="med">Cadastro medico</string>
+    <string name="Area_medica">Area medica cliqui aqui para se cadastrar</string>
+    <string name="crm">CRM</string>
+    <string name="agenda">Minha agenda</string>
+    <string name="horainicio">Hora Inicio:</string>
+    <string name="horafinal">Hora final:</string>
+    <string name="editTime">Edtar meu calendario</string>
+    <string name="datanas">Data de Nascimento:</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>

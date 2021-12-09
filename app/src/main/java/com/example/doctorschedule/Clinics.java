@@ -60,14 +60,6 @@ public class Clinics extends AppCompatActivity {
         linicList = new ArrayList<>();
         getData();
 
-        clinicsback.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent backtoboarclin = new Intent(getApplicationContext(), MainPageUser.class);
-                startActivity(backtoboarclin);
-            }
-        });
-
     }
 
     private void getData() {
@@ -107,5 +99,8 @@ public class Clinics extends AppCompatActivity {
         requestQueue.add(jsonArrayRequest);
     }
 
+    public void BackmainUserpage(View view) {
+        this.finish();
+    }
 }
 

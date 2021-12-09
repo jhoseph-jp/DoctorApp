@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="15dp"
-    tools:context=".SignUp3rd">
+    tools:context=".SignUp3rd"
+    android:background="@drawable/background_doctor">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -114,7 +115,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
-            android:text="buscar cep" />
+            android:text="buscar cep"
+            android:backgroundTint="@color/plum"
+            android:textColor="@color/white"/>
 
         <Button
             android:id="@+id/SignUp3rdNextBtn"
@@ -124,7 +127,9 @@
             android:layout_marginTop="20dp"
             android:text="@string/next_sign_btn3"
             android:onClick="callSign3toNext"
-            android:transitionName="transitionNextBtn" />
+            android:transitionName="transitionNextBtn"
+            android:backgroundTint="@color/plum"
+            android:textColor="@color/white"/>
 
     </LinearLayout>
 </ScrollView>

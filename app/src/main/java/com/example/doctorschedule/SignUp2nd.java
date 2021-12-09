@@ -72,6 +72,8 @@ public class SignUp2nd extends AppCompatActivity {
         String rgPg2 = getIntent().getStringExtra("rg");
         String emailPg2 = getIntent().getStringExtra("emailPerson");
         String passPg2 = getIntent().getStringExtra("pass");
+        String crm2 = getIntent().getStringExtra("crm");
+        String funcao2 = getIntent().getStringExtra("funcao");
 
         callNextStep3.putExtra("fullName", namePg2);
         callNextStep3.putExtra("cpf",cpfPg2);
@@ -80,6 +82,8 @@ public class SignUp2nd extends AppCompatActivity {
         callNextStep3.putExtra("pass",passPg2);
          callNextStep3.putExtra("genero",generoescolhido);
          callNextStep3.putExtra("nascimento", date);
+         callNextStep3.putExtra("crm", crm2);
+         callNextStep3.putExtra("funcao", funcao2);
 
 
         Pair[] pairs = new Pair[3];

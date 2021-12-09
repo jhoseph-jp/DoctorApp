@@ -5,16 +5,14 @@ import androidx.cardview.widget.CardView;
 
 import android.app.DatePickerDialog;
 import android.app.ProgressDialog;
+import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Parcelable;
+import android.text.format.DateFormat;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.DatePicker;
-import android.widget.ImageView;
-import android.widget.NumberPicker;
 import android.widget.TextView;
+import android.widget.TimePicker;
 import android.widget.Toast;
 
 import com.android.volley.RequestQueue;
@@ -23,16 +21,15 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.doctorschedule.PagesConstructor.SpecialtyModel;
-import com.example.doctorschedule.User.MainPageUser;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 public class Scheduling extends AppCompatActivity {
@@ -40,28 +37,34 @@ public class Scheduling extends AppCompatActivity {
     //variable
 
     DatePickerDialog.OnDateSetListener setListener;
-    NumberPicker hora, minuto, tipodn;
-    CardView dateChooseCard;
+    TextView horainicio, horafinal;
+    CardView dateChooseCard, ecolhaHoraInit, ecolhaHoraFinal;
     TextView dateChoiseText, espEcolhida, medicoselected;
     String[] horaConsulta;
     String[] minutoConsulta;
     String[] periodoConsulta;
     CardView especialidade_card;
-    CardView medic_card;
+    CardView medic_card, clinicaCard;
     String date;
     String formatDate;
     LocalStorage localStorage;
     String url = "https://doctor-schedule-api.herokuapp.com/login";
     List<SpecialtyModel> escTipo = new ArrayList<>();
     String url2 = "https://doctor-schedule-api.herokuapp.com/medicos";
-    TextView textView;
-    String rec;
-    String recebe;
-    String veriEsp;
+    String url3 = "https://doctor-schedule-rails.herokuapp.com/api/v1/patient/appointments?token=";
+    TextView clinicName, endClinic;
+    String rec, recCl;
+   private String recebe, recClinica, recTOken;
+    List<SpecialtyModel> clinicaListName = new ArrayList<>();
+
 
     static final int ACTIVITY_2_REQUEST = 1;
     static final int ACTIVITY_3_REQUEST = 2;
+    static final int ACTIVITY_4_REQUEST = 3;
     String espec;
+    String clinicSec;
+
+    int hinit,mininit, hfinal, minfinal;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,7 +80,12 @@ public class Scheduling extends AppCompatActivity {
         medic_card = findViewById(R.id.medic_card);
         espEcolhida = findViewById(R.id.especi_text);
         medicoselected = findViewById(R.id.Medicname);
-        textView = findViewById(R.id.textView);
+        clinicaCard = findViewById(R.id.medic_Clinic);
+        clinicName = findViewById(R.id.MedicClinic);
+        endClinic = findViewById(R.id.MedicClinicEnd);
+        ecolhaHoraInit = findViewById(R.id.choosehourInit);
+        ecolhaHoraFinal = findViewById(R.id.ecolhaHoraFinal);
+
 
         Calendar calendar = Calendar.getInstance();
 
@@ -85,25 +93,15 @@ public class Scheduling extends AppCompatActivity {
         final int month = calendar.get(Calendar.MONTH);
         final int day = calendar.get(Calendar.DAY_OF_MONTH);
 
-        hora = findViewById(R.id.haour);
-        minuto = findViewById(R.id.min);
-        tipodn = findViewById(R.id.type_choise);
-
-        hora.setMinValue(0);
-        hora.setMaxValue(11);
-        hora.setDisplayedValues(horaConsulta);
-        minuto.setMinValue(0);
-        minuto.setMaxValue(2);
-        minuto.setDisplayedValues(minutoConsulta);
-        tipodn.setMinValue(0);
-        tipodn.setMaxValue(3);
-        tipodn.setDisplayedValues(periodoConsulta);
+        horainicio = findViewById(R.id.haourinit);
+        horafinal = findViewById(R.id.hourfinal);
 
         localStorage = new LocalStorage(Scheduling.this);
 
-       /*if (!CheckDate() | !CheckEsp() | !CheckMed()){
-            return;
-        }*/
+        recTOken = getIntent().getStringExtra("tok");
+
+        url3 += recTOken;
+
 
         dateChooseCard.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -112,14 +110,12 @@ public class Scheduling extends AppCompatActivity {
                     @Override
                     public void onDateSet(DatePicker view, int year, int month, int day) {
                         month = month + 1;
-                        date = day + "/" + month + "/" + year;
+                        String date = day + "/" + month + "/" + year;
                         dateChoiseText.setText(date);
-                        // CheckDate();
                     }
                 }, year, month, day);
                 datePickerDialog.show();
             }
-
         });
 
         especialidade_card.setOnClickListener(new View.OnClickListener() {
@@ -146,31 +142,73 @@ public class Scheduling extends AppCompatActivity {
             }
         });
 
+        clinicaCard.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                clinicSec = medicoselected.getText().toString();
+                if (clinicSec.isEmpty()) {
+                    clinicName.setError(null);
+                    Toast.makeText(getApplicationContext(), "O tipo de especialista deve ser preenchido primeiro", Toast.LENGTH_SHORT).show();
+
+                } else {
+
+                    Intent medicClnic = new Intent(getApplicationContext(), ClinicList.class);
+                    startActivityForResult(medicClnic.putExtra("idclinic", recClinica), ACTIVITY_4_REQUEST);
+                }
+            }
+        });
+
+
+        ecolhaHoraInit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                TimePickerDialog timePickerDialog = new TimePickerDialog(
+                        Scheduling.this, new TimePickerDialog.OnTimeSetListener() {
+                    @Override
+                    public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
+                        hinit = hourOfDay;
+                        mininit = minute;
+
+                        Calendar calendar1 = Calendar.getInstance();
+
+                        calendar1.set(0, 0, 0,hinit,mininit);
+                        horainicio.setText(DateFormat.format("hh:mm aa", calendar1));
+
+                    }
+                }, 12, 0,false
+                );
+                timePickerDialog.updateTime(hinit,mininit);
+                timePickerDialog.show();
+            }
+        });
+
+        ecolhaHoraFinal.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                TimePickerDialog timePickerDialog2 = new TimePickerDialog(
+                        Scheduling.this, new TimePickerDialog.OnTimeSetListener() {
+                    @Override
+                    public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
+                        hfinal = hourOfDay;
+                        minfinal = minute;
+
+                        Calendar calendar2 = Calendar.getInstance();
+
+                        calendar2.set(0, 0, 0,hfinal,minfinal);
+                        horafinal.setText(DateFormat.format("hh:mm aa", calendar2));
+
+                    }
+                }, 12, 0,false
+                );
+                timePickerDialog2.updateTime(hfinal,minfinal);
+                timePickerDialog2.show();
+            }
+        });
+
     }
 
     public void BackApp(View v) {
         this.finish();
-    }
-
-    /* private void CheckDate(){
-        String val = dateChoiseText.getText().toString();
-        if (val.isEmpty()){
-            dateChoiseText.setError("O campo deve ser preenchido");
-        }else{
-
-        }
-
-     }
- */
-    private void CheckEsp() {
-        espec = espEcolhida.getText().toString();
-        if (espec.isEmpty()) {
-            Toast.makeText(this, "O tipo de especialidade deve ser preenchido p", Toast.LENGTH_SHORT).show();
-
-        } else {
-
-        }
-
     }
 
     private void CheckMed() {
@@ -184,19 +222,13 @@ public class Scheduling extends AppCompatActivity {
     }
 
     private void SendConsult() {
-        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
-        formatDate = formatter.format(dateChoiseText);
-
-        hora.getValue();
-        minuto.getValue();
-        tipodn.getDisplay().toString();
 
         JSONObject params = new JSONObject();
         try {
-            params.put("dia_consulta", formatDate);
-            params.put("hora_inicio", hora);
-            params.put("hora_final", minuto);
-            params.put("id_medico", espEcolhida);
+            params.put("dia_consulta", dateChoiseText.getText().toString());
+            params.put("hora_inicio", horainicio.getText().toString());
+            params.put("hora_final", horafinal.getText().toString());
+            params.put("id_medico", recebe.toString());
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -204,7 +236,7 @@ public class Scheduling extends AppCompatActivity {
         new Thread(new Runnable() {
             @Override
             public void run() {
-                Http http = new Http(Scheduling.this, url);
+                Http http = new Http(Scheduling.this, url3);
                 http.setMethod("post");
                 http.setData(data);
                 http.send();
@@ -216,12 +248,10 @@ public class Scheduling extends AppCompatActivity {
                         if (code == 200) {
                             try {
                                 JSONObject response = new JSONObject(http.getReponse());
-                                String token = response.getString("token");
-                                localStorage.setToken(token);
 
                                 Toast.makeText(getApplicationContext(), "Cadastro concluido", Toast.LENGTH_SHORT).show();
-                                // Intent userpag = new Intent(getApplicationContext(), MainPageUser.class);
-                                //startActivity(userpag);
+                                 Intent userpag = new Intent(getApplicationContext(), ScheduleDone.class);
+                                startActivity(userpag);
                                 finish();
                             } catch (JSONException e) {
                                 e.printStackTrace();
@@ -278,9 +308,6 @@ public class Scheduling extends AppCompatActivity {
                                     rec = escTipo.get(i).getId();
 
                                     recebe = rec.toString();
-
-                                    //Intent passIdMed = new Intent(getApplicationContext(), Doctor.class);
-                                    // passIdMed.putExtra("idm",recebe);
                                 }
                             }
 
@@ -305,9 +332,63 @@ public class Scheduling extends AppCompatActivity {
             if (resultCode == RESULT_OK) {
                 String resultado2 = data.getStringExtra("med");
                 medicoselected.setText(resultado2);
+
+                recCl = medicoselected.getText().toString();
+                ProgressDialog progressDialog = new ProgressDialog(this);
+                progressDialog.setMessage("Carregando..");
+                progressDialog.show();
+                JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(url2, new Response.Listener<JSONArray>() {
+                    @Override
+                    public void onResponse(JSONArray response) {
+                        try {
+                            for (int i = 0; i < response.length(); i++) {
+                                JSONObject jsonObjectSpec = response.getJSONObject(i);
+                                SpecialtyModel specialtyModelMed = new SpecialtyModel();
+                                specialtyModelMed.setId(jsonObjectSpec.getString("id"));
+                                specialtyModelMed.setNome_medico(jsonObjectSpec.getString("nome"));
+                                specialtyModelMed.setId_clinica(jsonObjectSpec.getJSONObject("especialidade").getString("id_clinica"));
+                                clinicaListName.add(specialtyModelMed);
+                                if (recCl.matches(clinicaListName.get(i).getNome_medico())) {
+                                    recCl = clinicaListName.get(i).getId_clinica();
+
+                                    recClinica = recCl.toString();
+                                }
+                            }
+
+                        } catch (JSONException e) {
+                            Toast.makeText(Scheduling.this, "Um erro ocorreu no Json", Toast.LENGTH_SHORT).show();
+                        }
+                        progressDialog.dismiss();
+
+
+                    }
+                }, new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        progressDialog.dismiss();
+                        Toast.makeText(Scheduling.this, "Um erro ocorreu", Toast.LENGTH_SHORT).show();
+                    }
+                });
+                RequestQueue requestQueue = Volley.newRequestQueue(this);
+                requestQueue.add(jsonArrayRequest);
+            }
+        } else if (requestCode == ACTIVITY_4_REQUEST) {
+            if (resultCode == RESULT_OK) {
+                String resultado3 = data.getStringExtra("clinicName");
+                clinicName.setText(resultado3);
+                String resultado4 = data.getStringExtra("EndClinic");
+                endClinic.setText(resultado4);
             }
         } else {
             super.onActivityResult(requestCode, resultCode, data);
         }
     }
+
+    public void NextStepsc(View view) {
+        SendConsult();
+        Intent proximo = new Intent(getApplicationContext(), ScheduleDone.class);
+        startActivity(proximo);
+
+    }
+
 }

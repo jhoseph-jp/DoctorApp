@@ -8,7 +8,7 @@ public class LocalStorage {
     SharedPreferences sharedPreferences;
     SharedPreferences.Editor editor;
     Context context;
-    String token;
+    String token, id;
 
     public LocalStorage(Context context){
         this.context = context;
